@@ -1,19 +1,21 @@
 [project]
 name = "sap_dev_uploads"
-version = "1.0.0"
-description = "Bulk uploads to the SAP DEV tenant: goods movements, supplier invoices, purchase orders and products."
-requires-python = ">=3.12"
+version = "2.0.0"
+description = "SAP bulk uploads (DEV): the installable twin of the Streamlit DEV dashboard."
+# Python 3.12: the version Flet's prebuilt Android wheels for pandas/numpy target.
+requires-python = ">=3.12,<3.13"
 dependencies = [
     "flet==1.0.5",
+    "pandas==2.2.2",
     "openpyxl>=3.1",
     "requests>=2.31",
 ]
 
 [tool.flet]
-product = "SAP DEV Uploads"
-org = "com.yourcompany"          # change to your company's reverse domain
-company = "Your Company"
-icon_background = "#F2A900"
+product = "SAP bulk uploads DEV"
+org = "com.incresol"
+company = "Incresol"
+icon_background = "#FFFFFF"
 
 [tool.flet.app]
 path = "src"
@@ -22,10 +24,11 @@ path = "src"
 "android.permission.INTERNET" = true
 
 [tool.flet.splash]
-color = "#F4F6F8"
-dark_color = "#1F2A33"
+color = "#FBFCFD"
+dark_color = "#1E3A8A"
 
 [tool.flet.boot_screen.flet]
 spinner_size = 28
-spinner_color_light = "#1F2A33"
-startup_message = "Starting SAP DEV Uploads"
+spinner_color_light = "#5B21B6"
+startup_message = "Starting SAP bulk uploads"
+prepare_message = "Preparing the app (first start only)"
