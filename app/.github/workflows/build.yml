@@ -1,0 +1,49 @@
+# Builds the Windows app and the Android APK on GitHub's machines.
+# Run it from the repo's Actions tab ("Build app" > "Run workflow"),
+# or push a tag such as v1.0.1. Download the results under "Artifacts".
+name: Build app
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+
+env:
+  UV_PYTHON: "3.12"
+  PYTHONUTF8: 1
+  FLET_CLI_NO_RICH_OUTPUT: 1
+
+jobs:
+  build:
+    name: Build ${{ matrix.name }}
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: windows
+            runner: windows-latest
+            build_cmd: "flet build windows"
+            artifact_path: build/windows
+          - name: apk
+            runner: ubuntu-latest
+            build_cmd: "flet build apk"
+            artifact_path: build/apk
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Build app
+        shell: bash
+        run: |
+          uv run ${{ matrix.build_cmd }} --yes --verbose --build-number ${{ github.run_number }}
+
+      - name: Upload build
+        uses: actions/upload-artifact@v4
+        with:
+          name: sap-bulk-uploads-dev-${{ matrix.name }}
+          path: ${{ matrix.artifact_path }}
+          if-no-files-found: error

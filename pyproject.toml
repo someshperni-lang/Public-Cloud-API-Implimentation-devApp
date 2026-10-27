@@ -11,8 +11,8 @@ dependencies = [
 
 [tool.flet]
 product = "SAP DEV Uploads"
-org = "com.incresol"          # change to your company's reverse domain
-company = "Incresol"
+org = "com.yourcompany"          # change to your company's reverse domain
+company = "Your Company"
 icon_background = "#F2A900"
 
 [tool.flet.app]
