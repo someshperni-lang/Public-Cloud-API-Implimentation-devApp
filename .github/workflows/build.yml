@@ -1,0 +1,40 @@
+# Builds the Windows app and the Android APK on GitHub's machines.
+# Run it from the repo's Actions tab ("Build app" > "Run workflow"),
+# or push a tag such as v1.0.1. Download the results under "Artifacts".
+name: Build app
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+
+jobs:
+  build:
+    name: Build ${{ matrix.target }}
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: windows
+            runner: windows-latest
+          - target: apk
+            runner: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Build app
+        id: build
+        uses: flet-dev/flet-build-action@v1
+        with:
+          target: ${{ matrix.target }}
+          build-number: ${{ github.run_number }}
+
+      - name: Upload build
+        uses: actions/upload-artifact@v7
+        with:
+          name: sap-dev-uploads-${{ matrix.target }}
+          path: ${{ steps.build.outputs.archive-path }}
+          archive: false
+          if-no-files-found: error

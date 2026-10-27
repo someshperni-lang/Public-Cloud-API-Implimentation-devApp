@@ -1,0 +1,31 @@
+[project]
+name = "sap_dev_uploads"
+version = "1.0.0"
+description = "Bulk uploads to the SAP DEV tenant: goods movements, supplier invoices, purchase orders and products."
+requires-python = ">=3.12"
+dependencies = [
+    "flet==1.0.5",
+    "openpyxl>=3.1",
+    "requests>=2.31",
+]
+
+[tool.flet]
+product = "SAP DEV Uploads"
+org = "com.incresol"          # change to your company's reverse domain
+company = "Incresol"
+icon_background = "#F2A900"
+
+[tool.flet.app]
+path = "src"
+
+[tool.flet.android.permission]
+"android.permission.INTERNET" = true
+
+[tool.flet.splash]
+color = "#F4F6F8"
+dark_color = "#1F2A33"
+
+[tool.flet.boot_screen.flet]
+spinner_size = 28
+spinner_color_light = "#1F2A33"
+startup_message = "Starting SAP DEV Uploads"

@@ -1,0 +1,940 @@
+{
+  "info": {
+    "_postman_id": "f6a74c0b-8a1b-4cb9-bdaa-1a6f4e9e6a01",
+    "name": "API_PRODUCT_SRV",
+    "description": "Postman collection generated from the uploaded SAP API_PRODUCT_SRV metadata. Set the collection variable baseUrl to the service root, for example https://your-sap-host/sap/opu/odata/sap/API_PRODUCT_SRV.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Service Document",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/",
+        "description": "Returns the OData service document."
+      }
+    },
+    {
+      "name": "Metadata",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/xml"
+          }
+        ],
+        "url": "{{baseUrl}}/$metadata",
+        "description": "Returns the OData service metadata."
+      }
+    },
+    {
+      "name": "GET A_Product",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/A_Product?$top=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "A_Product"
+          ],
+          "query": [
+            {
+              "key": "$top",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Read records from the A_Product entity set. Adjust $top or add OData query options as needed."
+      }
+    },
+    {
+      "name": "GET A_ProductBasicText",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/A_ProductBasicText?$top=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "A_ProductBasicText"
+          ],
+          "query": [
+            {
+              "key": "$top",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Read records from the A_ProductBasicText entity set. Adjust $top or add OData query options as needed."
+      }
+    },
+    {
+      "name": "GET A_ProductDescription",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/A_ProductDescription?$top=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "A_ProductDescription"
+          ],
+          "query": [
+            {
+              "key": "$top",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Read records from the A_ProductDescription entity set. Adjust $top or add OData query options as needed."
+      }
+    },
+    {
+      "name": "GET A_ProductInspectionText",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/A_ProductInspectionText?$top=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "A_ProductInspectionText"
+          ],
+          "query": [
+            {
+              "key": "$top",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Read records from the A_ProductInspectionText entity set. Adjust $top or add OData query options as needed."
+      }
+    },
+    {
+      "name": "GET A_ProductMLAccount",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/A_ProductMLAccount?$top=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "A_ProductMLAccount"
+          ],
+          "query": [
+            {
+              "key": "$top",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Read records from the A_ProductMLAccount entity set. Adjust $top or add OData query options as needed."
+      }
+    },
+    {
+      "name": "GET A_ProductMLPrices",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/A_ProductMLPrices?$top=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "A_ProductMLPrices"
+          ],
+          "query": [
+            {
+              "key": "$top",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Read records from the A_ProductMLPrices entity set. Adjust $top or add OData query options as needed."
+      }
+    },
+    {
+      "name": "GET A_ProductPlant",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/A_ProductPlant?$top=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "A_ProductPlant"
+          ],
+          "query": [
+            {
+              "key": "$top",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Read records from the A_ProductPlant entity set. Adjust $top or add OData query options as needed."
+      }
+    },
+    {
+      "name": "GET A_ProductPlantCosting",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/A_ProductPlantCosting?$top=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "A_ProductPlantCosting"
+          ],
+          "query": [
+            {
+              "key": "$top",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Read records from the A_ProductPlantCosting entity set. Adjust $top or add OData query options as needed."
+      }
+    },
+    {
+      "name": "GET A_ProductPlantForecasting",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/A_ProductPlantForecasting?$top=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "A_ProductPlantForecasting"
+          ],
+          "query": [
+            {
+              "key": "$top",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Read records from the A_ProductPlantForecasting entity set. Adjust $top or add OData query options as needed."
+      }
+    },
+    {
+      "name": "GET A_ProductPlantIntlTrd",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/A_ProductPlantIntlTrd?$top=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "A_ProductPlantIntlTrd"
+          ],
+          "query": [
+            {
+              "key": "$top",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Read records from the A_ProductPlantIntlTrd entity set. Adjust $top or add OData query options as needed."
+      }
+    },
+    {
+      "name": "GET A_ProductPlantMRPArea",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/A_ProductPlantMRPArea?$top=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "A_ProductPlantMRPArea"
+          ],
+          "query": [
+            {
+              "key": "$top",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Read records from the A_ProductPlantMRPArea entity set. Adjust $top or add OData query options as needed."
+      }
+    },
+    {
+      "name": "GET A_ProductPlantProcurement",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/A_ProductPlantProcurement?$top=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "A_ProductPlantProcurement"
+          ],
+          "query": [
+            {
+              "key": "$top",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Read records from the A_ProductPlantProcurement entity set. Adjust $top or add OData query options as needed."
+      }
+    },
+    {
+      "name": "GET A_ProductPlantQualityMgmt",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/A_ProductPlantQualityMgmt?$top=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "A_ProductPlantQualityMgmt"
+          ],
+          "query": [
+            {
+              "key": "$top",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Read records from the A_ProductPlantQualityMgmt entity set. Adjust $top or add OData query options as needed."
+      }
+    },
+    {
+      "name": "GET A_ProductPlantSales",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/A_ProductPlantSales?$top=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "A_ProductPlantSales"
+          ],
+          "query": [
+            {
+              "key": "$top",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Read records from the A_ProductPlantSales entity set. Adjust $top or add OData query options as needed."
+      }
+    },
+    {
+      "name": "GET A_ProductPlantStorage",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/A_ProductPlantStorage?$top=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "A_ProductPlantStorage"
+          ],
+          "query": [
+            {
+              "key": "$top",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Read records from the A_ProductPlantStorage entity set. Adjust $top or add OData query options as needed."
+      }
+    },
+    {
+      "name": "GET A_ProductPlantText",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/A_ProductPlantText?$top=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "A_ProductPlantText"
+          ],
+          "query": [
+            {
+              "key": "$top",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Read records from the A_ProductPlantText entity set. Adjust $top or add OData query options as needed."
+      }
+    },
+    {
+      "name": "GET A_ProductProcurement",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/A_ProductProcurement?$top=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "A_ProductProcurement"
+          ],
+          "query": [
+            {
+              "key": "$top",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Read records from the A_ProductProcurement entity set. Adjust $top or add OData query options as needed."
+      }
+    },
+    {
+      "name": "GET A_ProductPurchaseText",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/A_ProductPurchaseText?$top=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "A_ProductPurchaseText"
+          ],
+          "query": [
+            {
+              "key": "$top",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Read records from the A_ProductPurchaseText entity set. Adjust $top or add OData query options as needed."
+      }
+    },
+    {
+      "name": "GET A_ProductQualityMgmt",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/A_ProductQualityMgmt?$top=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "A_ProductQualityMgmt"
+          ],
+          "query": [
+            {
+              "key": "$top",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Read records from the A_ProductQualityMgmt entity set. Adjust $top or add OData query options as needed."
+      }
+    },
+    {
+      "name": "GET A_ProductSales",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/A_ProductSales?$top=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "A_ProductSales"
+          ],
+          "query": [
+            {
+              "key": "$top",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Read records from the A_ProductSales entity set. Adjust $top or add OData query options as needed."
+      }
+    },
+    {
+      "name": "GET A_ProductSalesDelivery",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/A_ProductSalesDelivery?$top=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "A_ProductSalesDelivery"
+          ],
+          "query": [
+            {
+              "key": "$top",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Read records from the A_ProductSalesDelivery entity set. Adjust $top or add OData query options as needed."
+      }
+    },
+    {
+      "name": "GET A_ProductSalesTax",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/A_ProductSalesTax?$top=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "A_ProductSalesTax"
+          ],
+          "query": [
+            {
+              "key": "$top",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Read records from the A_ProductSalesTax entity set. Adjust $top or add OData query options as needed."
+      }
+    },
+    {
+      "name": "GET A_ProductSalesText",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/A_ProductSalesText?$top=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "A_ProductSalesText"
+          ],
+          "query": [
+            {
+              "key": "$top",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Read records from the A_ProductSalesText entity set. Adjust $top or add OData query options as needed."
+      }
+    },
+    {
+      "name": "GET A_ProductStorage",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/A_ProductStorage?$top=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "A_ProductStorage"
+          ],
+          "query": [
+            {
+              "key": "$top",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Read records from the A_ProductStorage entity set. Adjust $top or add OData query options as needed."
+      }
+    },
+    {
+      "name": "GET A_ProductStorageLocation",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/A_ProductStorageLocation?$top=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "A_ProductStorageLocation"
+          ],
+          "query": [
+            {
+              "key": "$top",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Read records from the A_ProductStorageLocation entity set. Adjust $top or add OData query options as needed."
+      }
+    },
+    {
+      "name": "GET A_ProductSupplyPlanning",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/A_ProductSupplyPlanning?$top=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "A_ProductSupplyPlanning"
+          ],
+          "query": [
+            {
+              "key": "$top",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Read records from the A_ProductSupplyPlanning entity set. Adjust $top or add OData query options as needed."
+      }
+    },
+    {
+      "name": "GET A_ProductUnitsOfMeasure",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/A_ProductUnitsOfMeasure?$top=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "A_ProductUnitsOfMeasure"
+          ],
+          "query": [
+            {
+              "key": "$top",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Read records from the A_ProductUnitsOfMeasure entity set. Adjust $top or add OData query options as needed."
+      }
+    },
+    {
+      "name": "GET A_ProductUnitsOfMeasureEAN",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/A_ProductUnitsOfMeasureEAN?$top=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "A_ProductUnitsOfMeasureEAN"
+          ],
+          "query": [
+            {
+              "key": "$top",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Read records from the A_ProductUnitsOfMeasureEAN entity set. Adjust $top or add OData query options as needed."
+      }
+    },
+    {
+      "name": "GET A_ProductValuation",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/A_ProductValuation?$top=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "A_ProductValuation"
+          ],
+          "query": [
+            {
+              "key": "$top",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Read records from the A_ProductValuation entity set. Adjust $top or add OData query options as needed."
+      }
+    },
+    {
+      "name": "GET A_ProductValuationAccount",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/A_ProductValuationAccount?$top=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "A_ProductValuationAccount"
+          ],
+          "query": [
+            {
+              "key": "$top",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Read records from the A_ProductValuationAccount entity set. Adjust $top or add OData query options as needed."
+      }
+    },
+    {
+      "name": "GET A_ProductValuationCosting",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/A_ProductValuationCosting?$top=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "A_ProductValuationCosting"
+          ],
+          "query": [
+            {
+              "key": "$top",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Read records from the A_ProductValuationCosting entity set. Adjust $top or add OData query options as needed."
+      }
+    },
+    {
+      "name": "GET A_ProductWorkScheduling",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/A_ProductWorkScheduling?$top=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "A_ProductWorkScheduling"
+          ],
+          "query": [
+            {
+              "key": "$top",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Read records from the A_ProductWorkScheduling entity set. Adjust $top or add OData query options as needed."
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://your-sap-host/sap/opu/odata/sap/API_PRODUCT_SRV"
+    }
+  ]
+}

@@ -1,0 +1,2260 @@
+{
+  "{http://schemas.microsoft.com/ado/2007/06/edmx}Edmx": {
+    "@attributes": {
+      "Version": "1.0"
+    },
+    "{http://docs.oasis-open.org/odata/ns/edmx}Reference": [
+      {
+        "@attributes": {
+          "Uri": "/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value"
+        },
+        "{http://docs.oasis-open.org/odata/ns/edmx}Include": {
+          "@attributes": {
+            "Namespace": "Org.OData.Aggregation.V1",
+            "Alias": "Aggregation"
+          }
+        }
+      },
+      {
+        "@attributes": {
+          "Uri": "/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='LOCAL')/$value"
+        },
+        "{http://docs.oasis-open.org/odata/ns/edmx}Include": {
+          "@attributes": {
+            "Namespace": "com.sap.vocabularies.Analytics.v1",
+            "Alias": "Analytics"
+          }
+        }
+      },
+      {
+        "@attributes": {
+          "Uri": "/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value"
+        },
+        "{http://docs.oasis-open.org/odata/ns/edmx}Include": {
+          "@attributes": {
+            "Namespace": "Org.OData.Capabilities.V1",
+            "Alias": "Capabilities"
+          }
+        }
+      },
+      {
+        "@attributes": {
+          "Uri": "/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CODELIST',Version='0001',SAP__Origin='LOCAL')/$value"
+        },
+        "{http://docs.oasis-open.org/odata/ns/edmx}Include": {
+          "@attributes": {
+            "Namespace": "com.sap.vocabularies.CodeList.v1",
+            "Alias": "SAP__CodeList"
+          }
+        }
+      },
+      {
+        "@attributes": {
+          "Uri": "/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value"
+        },
+        "{http://docs.oasis-open.org/odata/ns/edmx}Include": {
+          "@attributes": {
+            "Namespace": "com.sap.vocabularies.Common.v1",
+            "Alias": "Common"
+          }
+        }
+      },
+      {
+        "@attributes": {
+          "Uri": "/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value"
+        },
+        "{http://docs.oasis-open.org/odata/ns/edmx}Include": {
+          "@attributes": {
+            "Namespace": "com.sap.vocabularies.Communication.v1",
+            "Alias": "Communication"
+          }
+        }
+      },
+      {
+        "@attributes": {
+          "Uri": "/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='LOCAL')/$value"
+        },
+        "{http://docs.oasis-open.org/odata/ns/edmx}Include": {
+          "@attributes": {
+            "Namespace": "Org.OData.Measures.V1",
+            "Alias": "Measures"
+          }
+        }
+      },
+      {
+        "@attributes": {
+          "Uri": "/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ODM',Version='0001',SAP__Origin='LOCAL')/$value"
+        },
+        "{http://docs.oasis-open.org/odata/ns/edmx}Include": {
+          "@attributes": {
+            "Namespace": "com.sap.vocabularies.ODM.v1",
+            "Alias": "SAP__ODM"
+          }
+        }
+      },
+      {
+        "@attributes": {
+          "Uri": "/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value"
+        },
+        "{http://docs.oasis-open.org/odata/ns/edmx}Include": {
+          "@attributes": {
+            "Namespace": "com.sap.vocabularies.PersonalData.v1",
+            "Alias": "PersonalData"
+          }
+        }
+      },
+      {
+        "@attributes": {
+          "Uri": "/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value"
+        },
+        "{http://docs.oasis-open.org/odata/ns/edmx}Include": {
+          "@attributes": {
+            "Namespace": "com.sap.vocabularies.UI.v1",
+            "Alias": "UI"
+          }
+        }
+      },
+      {
+        "@attributes": {
+          "Uri": "/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='LOCAL')/$value"
+        },
+        "{http://docs.oasis-open.org/odata/ns/edmx}Include": {
+          "@attributes": {
+            "Namespace": "Org.OData.Validation.V1",
+            "Alias": "Validation"
+          }
+        }
+      }
+    ],
+    "{http://schemas.microsoft.com/ado/2007/06/edmx}DataServices": {
+      "@attributes": {
+        "{http://schemas.microsoft.com/ado/2007/08/dataservices/metadata}DataServiceVersion": "2.0"
+      },
+      "{http://schemas.microsoft.com/ado/2008/09/edm}Schema": {
+        "@attributes": {
+          "Namespace": "API_MATERIAL_DOCUMENT_SRV",
+          "{http://www.w3.org/XML/1998/namespace}lang": "en",
+          "{http://www.sap.com/Protocols/SAPData}schema-version": "1"
+        },
+        "{http://schemas.microsoft.com/ado/2008/09/edm}EntityType": [
+          {
+            "@attributes": {
+              "Name": "A_MaterialDocumentHeaderType",
+              "{http://www.sap.com/Protocols/SAPData}label": "Document Header",
+              "{http://www.sap.com/Protocols/SAPData}content-version": "1"
+            },
+            "{http://schemas.microsoft.com/ado/2008/09/edm}Key": {
+              "{http://schemas.microsoft.com/ado/2008/09/edm}PropertyRef": [
+                {
+                  "@attributes": {
+                    "Name": "MaterialDocumentYear"
+                  }
+                },
+                {
+                  "@attributes": {
+                    "Name": "MaterialDocument"
+                  }
+                }
+              ]
+            },
+            "{http://schemas.microsoft.com/ado/2008/09/edm}Property": [
+              {
+                "@attributes": {
+                  "Name": "MaterialDocumentYear",
+                  "Type": "Edm.String",
+                  "Nullable": "false",
+                  "MaxLength": "4",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "NonNegative",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Material Document Year"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "MaterialDocument",
+                  "Type": "Edm.String",
+                  "Nullable": "false",
+                  "MaxLength": "10",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Material Document",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Number of Material Document"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "InventoryTransactionType",
+                  "Type": "Edm.String",
+                  "MaxLength": "2",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Transaction/Event Type"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "DocumentDate",
+                  "Type": "Edm.DateTime",
+                  "Precision": "0",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "Date",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Document Date",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Document Date in Document"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "PostingDate",
+                  "Type": "Edm.DateTime",
+                  "Precision": "0",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "Date",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Posting Date",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Posting Date in the Document"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "CreationDate",
+                  "Type": "Edm.DateTime",
+                  "Precision": "0",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "Date",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Entry Date",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Day On Which Accounting Document Was Entered"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "CreationTime",
+                  "Type": "Edm.Time",
+                  "Precision": "0",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Time of Entry"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "CreatedByUser",
+                  "Type": "Edm.String",
+                  "MaxLength": "12",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "User Name"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "MaterialDocumentHeaderText",
+                  "Type": "Edm.String",
+                  "MaxLength": "25",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Document Header Text"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "ReferenceDocument",
+                  "Type": "Edm.String",
+                  "MaxLength": "16",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Reference",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Reference Document Number"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "VersionForPrintingSlip",
+                  "Type": "Edm.String",
+                  "MaxLength": "1",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Print Version",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Version for Printing GR/GI Slip"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "ManualPrintIsTriggered",
+                  "Type": "Edm.String",
+                  "MaxLength": "1",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Print Active",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Print via Output Control"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "CtrlPostgForExtWhseMgmtSyst",
+                  "Type": "Edm.String",
+                  "MaxLength": "1",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "External WMS Control",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Control Posting for External WMS"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "GoodsMovementCode",
+                  "Type": "Edm.String",
+                  "MaxLength": "2",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Goods Movement Code"
+                }
+              }
+            ],
+            "{http://schemas.microsoft.com/ado/2008/09/edm}NavigationProperty": {
+              "@attributes": {
+                "Name": "to_MaterialDocumentItem",
+                "Relationship": "API_MATERIAL_DOCUMENT_SRV.assoc_9241EE3C64DC6370D0509D8AA8DA2241",
+                "FromRole": "FromRole_assoc_9241EE3C64DC6370D0509D8AA8DA2241",
+                "ToRole": "ToRole_assoc_9241EE3C64DC6370D0509D8AA8DA2241"
+              }
+            }
+          },
+          {
+            "@attributes": {
+              "Name": "A_MaterialDocumentItemType",
+              "{http://www.sap.com/Protocols/SAPData}label": "Document Items",
+              "{http://www.sap.com/Protocols/SAPData}content-version": "1"
+            },
+            "{http://schemas.microsoft.com/ado/2008/09/edm}Key": {
+              "{http://schemas.microsoft.com/ado/2008/09/edm}PropertyRef": [
+                {
+                  "@attributes": {
+                    "Name": "MaterialDocumentYear"
+                  }
+                },
+                {
+                  "@attributes": {
+                    "Name": "MaterialDocument"
+                  }
+                },
+                {
+                  "@attributes": {
+                    "Name": "MaterialDocumentItem"
+                  }
+                }
+              ]
+            },
+            "{http://schemas.microsoft.com/ado/2008/09/edm}Property": [
+              {
+                "@attributes": {
+                  "Name": "MaterialDocumentYear",
+                  "Type": "Edm.String",
+                  "Nullable": "false",
+                  "MaxLength": "4",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "NonNegative",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Material Document Year"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "MaterialDocument",
+                  "Type": "Edm.String",
+                  "Nullable": "false",
+                  "MaxLength": "10",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Material Document",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Number of Material Document"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "MaterialDocumentItem",
+                  "Type": "Edm.String",
+                  "Nullable": "false",
+                  "MaxLength": "4",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "NonNegative",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Material Document Item"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "Material",
+                  "Type": "Edm.String",
+                  "MaxLength": "40",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Material",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Material Number"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "Plant",
+                  "Type": "Edm.String",
+                  "MaxLength": "4",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Plant"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "StorageLocation",
+                  "Type": "Edm.String",
+                  "MaxLength": "4",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Storage Location"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "Batch",
+                  "Type": "Edm.String",
+                  "MaxLength": "10",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Batch",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Batch Number"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "BatchBySupplier",
+                  "Type": "Edm.String",
+                  "MaxLength": "15",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Supplier Batch",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Supplier Batch Number"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "GoodsMovementType",
+                  "Type": "Edm.String",
+                  "MaxLength": "3",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Movement Type",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Movement Type (Inventory Management)"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "InventoryStockType",
+                  "Type": "Edm.String",
+                  "MaxLength": "2",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Stock Type",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Stock Type of Goods Movement (Stock Identifier)"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "InventoryValuationType",
+                  "Type": "Edm.String",
+                  "MaxLength": "10",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Valuation Type"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "InventorySpecialStockType",
+                  "Type": "Edm.String",
+                  "MaxLength": "1",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Special Stock Type"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "Supplier",
+                  "Type": "Edm.String",
+                  "MaxLength": "10",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Supplier",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Account Number of Supplier"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "Customer",
+                  "Type": "Edm.String",
+                  "MaxLength": "10",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Customer",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Account Number of Customer"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "SalesOrder",
+                  "Type": "Edm.String",
+                  "MaxLength": "10",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Sales Order",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Sales Order Number"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "SalesOrderItem",
+                  "Type": "Edm.String",
+                  "MaxLength": "6",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "NonNegative",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Sales Order Item"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "SalesOrderScheduleLine",
+                  "Type": "Edm.String",
+                  "MaxLength": "4",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "NonNegative",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Sales Order Schedule"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "PurchaseOrder",
+                  "Type": "Edm.String",
+                  "MaxLength": "10",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Purchase Order",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Purchase Order Number"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "PurchaseOrderItem",
+                  "Type": "Edm.String",
+                  "MaxLength": "5",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "NonNegative",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Purchase Order Item",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Item Number of Purchasing Document"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "WBSElement",
+                  "Type": "Edm.String",
+                  "MaxLength": "24",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "WBS Element",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Work Breakdown Structure Element (WBS Element)"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "ManufacturingOrder",
+                  "Type": "Edm.String",
+                  "MaxLength": "12",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Manufacturing Order"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "ManufacturingOrderItem",
+                  "Type": "Edm.String",
+                  "MaxLength": "4",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "NonNegative",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Manufacturing Order Item"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "GoodsMovementRefDocType",
+                  "Type": "Edm.String",
+                  "MaxLength": "1",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Reference Document Type",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Goods Movement Reference Document Type"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "GoodsMovementReasonCode",
+                  "Type": "Edm.String",
+                  "MaxLength": "4",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "NonNegative",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Reason for Movement"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "Delivery",
+                  "Type": "Edm.String",
+                  "MaxLength": "10",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Delivery"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "DeliveryItem",
+                  "Type": "Edm.String",
+                  "MaxLength": "6",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "NonNegative",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Delivery Item"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "AccountAssignmentCategory",
+                  "Type": "Edm.String",
+                  "MaxLength": "1",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Account Assignment Category"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "CostCenter",
+                  "Type": "Edm.String",
+                  "MaxLength": "10",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Cost Center"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "ControllingArea",
+                  "Type": "Edm.String",
+                  "MaxLength": "4",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Controlling Area"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "CostObject",
+                  "Type": "Edm.String",
+                  "MaxLength": "12",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Cost Object"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "GLAccount",
+                  "Type": "Edm.String",
+                  "MaxLength": "10",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "G/L Account",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "G/L Account Number"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "FunctionalArea",
+                  "Type": "Edm.String",
+                  "MaxLength": "16",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Functional Area"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "ProfitabilitySegment",
+                  "Type": "Edm.String",
+                  "MaxLength": "10",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Profitability Segment"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "ProfitCenter",
+                  "Type": "Edm.String",
+                  "MaxLength": "10",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Profit Center"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "MasterFixedAsset",
+                  "Type": "Edm.String",
+                  "MaxLength": "12",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Asset",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Main Asset Number"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "FixedAsset",
+                  "Type": "Edm.String",
+                  "MaxLength": "4",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Asset Subnumber"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "MaterialBaseUnitISOCode",
+                  "Type": "Edm.String",
+                  "MaxLength": "3",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "ISO Code Base Unit",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "ISO Code of Base Unit of Measure"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "MaterialBaseUnitSAPCode",
+                  "Type": "Edm.String",
+                  "MaxLength": "3",
+                  "{http://www.sap.com/Protocols/SAPData}label": "SAP Code Base Unit",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "SAP Code of Base Unit of Measure"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "MaterialBaseUnit",
+                  "Type": "Edm.String",
+                  "MaxLength": "3",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Base Unit of Measure",
+                  "{http://www.sap.com/Protocols/SAPData}semantics": "unit-of-measure"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "QuantityInBaseUnit",
+                  "Type": "Edm.Decimal",
+                  "Precision": "13",
+                  "Scale": "3",
+                  "{http://www.sap.com/Protocols/SAPData}unit": "MaterialBaseUnit",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Quantity"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "EntryUnitISOCode",
+                  "Type": "Edm.String",
+                  "MaxLength": "3",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "ISO Code Entry Unit",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "ISO Code of Entry Unit"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "EntryUnitSAPCode",
+                  "Type": "Edm.String",
+                  "MaxLength": "3",
+                  "{http://www.sap.com/Protocols/SAPData}label": "SAP Code Entry Unit",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "SAP Code of Entry Unit"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "EntryUnit",
+                  "Type": "Edm.String",
+                  "MaxLength": "3",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Unit of Entry",
+                  "{http://www.sap.com/Protocols/SAPData}semantics": "unit-of-measure"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "QuantityInEntryUnit",
+                  "Type": "Edm.Decimal",
+                  "Precision": "13",
+                  "Scale": "3",
+                  "{http://www.sap.com/Protocols/SAPData}unit": "EntryUnit",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Quantity in Entry Unit",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Quantity in Unit of Entry"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "CompanyCodeCurrency",
+                  "Type": "Edm.String",
+                  "MaxLength": "5",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Company Code Currency",
+                  "{http://www.sap.com/Protocols/SAPData}semantics": "currency-code"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "GdsMvtExtAmtInCoCodeCrcy",
+                  "Type": "Edm.Decimal",
+                  "Precision": "14",
+                  "Scale": "3",
+                  "{http://www.sap.com/Protocols/SAPData}unit": "CompanyCodeCurrency",
+                  "{http://www.sap.com/Protocols/SAPData}label": "External Amount in LC",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Externally Entered Posting Amount in Local Currency"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "SlsPrcAmtInclVATInCoCodeCrcy",
+                  "Type": "Edm.Decimal",
+                  "Precision": "14",
+                  "Scale": "3",
+                  "{http://www.sap.com/Protocols/SAPData}unit": "CompanyCodeCurrency",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Sales Value Including VAT",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Sales Value Including Value-Added Tax"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "FiscalYear",
+                  "Type": "Edm.String",
+                  "MaxLength": "4",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "NonNegative",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Fiscal Year"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "FiscalYearPeriod",
+                  "Type": "Edm.String",
+                  "MaxLength": "7",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "NonNegative",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Fiscal Year & Period from Posting date",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Period Year"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "FiscalYearVariant",
+                  "Type": "Edm.String",
+                  "MaxLength": "2",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Fiscal Year Variant"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "IssgOrRcvgMaterial",
+                  "Type": "Edm.String",
+                  "MaxLength": "40",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Transfer Material"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "IssgOrRcvgBatch",
+                  "Type": "Edm.String",
+                  "MaxLength": "10",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Transfer Batch"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "IssuingOrReceivingPlant",
+                  "Type": "Edm.String",
+                  "MaxLength": "4",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Rec/Iss Plant",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Receiving/Issuing Plant"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "IssuingOrReceivingStorageLoc",
+                  "Type": "Edm.String",
+                  "MaxLength": "4",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Storage Location",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Receiving/Issuing Storage Location"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "IssuingOrReceivingStockType",
+                  "Type": "Edm.String",
+                  "MaxLength": "2",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Transfer Stock Type"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "IssgOrRcvgSpclStockInd",
+                  "Type": "Edm.String",
+                  "MaxLength": "1",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Transfer Special Stock Type"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "IssuingOrReceivingValType",
+                  "Type": "Edm.String",
+                  "MaxLength": "10",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Transfer Batch (Valuation Type)"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "IsCompletelyDelivered",
+                  "Type": "Edm.Boolean",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Delivery Completed",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "\"Delivery Completed\" Indicator"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "MaterialDocumentItemText",
+                  "Type": "Edm.String",
+                  "MaxLength": "50",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Text",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Item Text"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "GoodsRecipientName",
+                  "Type": "Edm.String",
+                  "MaxLength": "12",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Goods Recipient"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "UnloadingPointName",
+                  "Type": "Edm.String",
+                  "MaxLength": "25",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Unloading Point"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "ShelfLifeExpirationDate",
+                  "Type": "Edm.DateTime",
+                  "Precision": "0",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "Date",
+                  "{http://www.sap.com/Protocols/SAPData}label": "SLED/BBD",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Shelf Life Expiration or Best-Before Date"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "ManufactureDate",
+                  "Type": "Edm.DateTime",
+                  "Precision": "0",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "Date",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Date of Manufacture"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "SerialNumbersAreCreatedAutomly",
+                  "Type": "Edm.Boolean",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Create Serial Number Automatically"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "Reservation",
+                  "Type": "Edm.String",
+                  "MaxLength": "10",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "NonNegative",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Reservation",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Number of Reservation/Dependent Requirements"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "ReservationItem",
+                  "Type": "Edm.String",
+                  "MaxLength": "4",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "NonNegative",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Reservation Item",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Item Number of Reservation / Dependent Requirements"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "ReservationItemRecordType",
+                  "Type": "Edm.String",
+                  "MaxLength": "1",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Reservation Record Type"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "ReservationIsFinallyIssued",
+                  "Type": "Edm.Boolean",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Final-Issue Reservation",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Final Issue for Reservation"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "SpecialStockIdfgSalesOrder",
+                  "Type": "Edm.String",
+                  "MaxLength": "10",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Sales Order",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Sales Order Number of Valuated Sales Order Stock"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "SpecialStockIdfgSalesOrderItem",
+                  "Type": "Edm.String",
+                  "MaxLength": "6",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "NonNegative",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Sales Order Item",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Sales Order Item of Valuated Sales Order Stock"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "SpecialStockIdfgWBSElement",
+                  "Type": "Edm.String",
+                  "MaxLength": "24",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "WBS Element",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Work Breakdown Structure Element (WBS Element)"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "IsAutomaticallyCreated",
+                  "Type": "Edm.String",
+                  "MaxLength": "1",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Automatically Created",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Item Automatically Created Indicator"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "MaterialDocumentLine",
+                  "Type": "Edm.String",
+                  "MaxLength": "6",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "NonNegative",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Line ID",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Unique Identification of Document Line"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "MaterialDocumentParentLine",
+                  "Type": "Edm.String",
+                  "MaxLength": "6",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "NonNegative",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Parent line ID",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Identifier of immediately superior line"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "HierarchyNodeLevel",
+                  "Type": "Edm.String",
+                  "MaxLength": "2",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "NonNegative",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Hierarchy Level",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Hierarchy Level of Line in Document"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "GoodsMovementIsCancelled",
+                  "Type": "Edm.Boolean",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Is Item Canceled",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Item has been Canceled"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "ReversedMaterialDocumentYear",
+                  "Type": "Edm.String",
+                  "MaxLength": "4",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "NonNegative",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Reversed Document Year",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Reversed Material Document Year"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "ReversedMaterialDocument",
+                  "Type": "Edm.String",
+                  "MaxLength": "10",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Reversed Material Document"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "ReversedMaterialDocumentItem",
+                  "Type": "Edm.String",
+                  "MaxLength": "4",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "NonNegative",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Reversed Document Item",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Reversed Material Document Item"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "ReferenceDocumentFiscalYear",
+                  "Type": "Edm.String",
+                  "MaxLength": "4",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "NonNegative",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Fiscal Year (Reference Document)",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Fiscal Year of a Reference Document"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "InvtryMgmtRefDocumentItem",
+                  "Type": "Edm.String",
+                  "MaxLength": "4",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "NonNegative",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Reference Document Item",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Item of a Reference Document"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "InvtryMgmtReferenceDocument",
+                  "Type": "Edm.String",
+                  "MaxLength": "10",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Reference Document",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Document No. of a Reference Document"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "MaterialDocumentPostingType",
+                  "Type": "Edm.String",
+                  "MaxLength": "1",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Type of Posting",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Reversal, Return Delivery or Transfer Posting"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "InventoryUsabilityCode",
+                  "Type": "Edm.String",
+                  "MaxLength": "1",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Posting Control Stock Type"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "EWMWarehouse",
+                  "Type": "Edm.String",
+                  "MaxLength": "4",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Warehouse Number",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Warehouse Number/Warehouse Complex"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "EWMStorageBin",
+                  "Type": "Edm.String",
+                  "MaxLength": "18",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Storage Bin"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "HandlingUnitExternalID",
+                  "Type": "Edm.String",
+                  "MaxLength": "20",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Handling Unit",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "External Handling Unit Identification"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "DebitCreditCode",
+                  "Type": "Edm.String",
+                  "MaxLength": "1",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Debit/Credit Indicator"
+                }
+              }
+            ],
+            "{http://schemas.microsoft.com/ado/2008/09/edm}NavigationProperty": [
+              {
+                "@attributes": {
+                  "Name": "to_MaterialDocumentHeader",
+                  "Relationship": "API_MATERIAL_DOCUMENT_SRV.assoc_9241EE3C64DC6370D0509D8AA8DA2241",
+                  "FromRole": "ToRole_assoc_9241EE3C64DC6370D0509D8AA8DA2241",
+                  "ToRole": "FromRole_assoc_9241EE3C64DC6370D0509D8AA8DA2241"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "to_SerialNumbers",
+                  "Relationship": "API_MATERIAL_DOCUMENT_SRV.assoc_1108E069A43298B681C7DD076FEE7F8E",
+                  "FromRole": "FromRole_assoc_1108E069A43298B681C7DD076FEE7F8E",
+                  "ToRole": "ToRole_assoc_1108E069A43298B681C7DD076FEE7F8E"
+                }
+              }
+            ]
+          },
+          {
+            "@attributes": {
+              "Name": "A_SerialNumberMaterialDocumentType",
+              "{http://www.sap.com/Protocols/SAPData}label": "Serial Numbers",
+              "{http://www.sap.com/Protocols/SAPData}content-version": "1"
+            },
+            "{http://schemas.microsoft.com/ado/2008/09/edm}Key": {
+              "{http://schemas.microsoft.com/ado/2008/09/edm}PropertyRef": [
+                {
+                  "@attributes": {
+                    "Name": "Material"
+                  }
+                },
+                {
+                  "@attributes": {
+                    "Name": "SerialNumber"
+                  }
+                },
+                {
+                  "@attributes": {
+                    "Name": "MaterialDocument"
+                  }
+                },
+                {
+                  "@attributes": {
+                    "Name": "MaterialDocumentItem"
+                  }
+                },
+                {
+                  "@attributes": {
+                    "Name": "MaterialDocumentYear"
+                  }
+                }
+              ]
+            },
+            "{http://schemas.microsoft.com/ado/2008/09/edm}Property": [
+              {
+                "@attributes": {
+                  "Name": "Material",
+                  "Type": "Edm.String",
+                  "Nullable": "false",
+                  "MaxLength": "40",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Material",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Material Number"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "SerialNumber",
+                  "Type": "Edm.String",
+                  "Nullable": "false",
+                  "MaxLength": "18",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Serial Number"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "MaterialDocument",
+                  "Type": "Edm.String",
+                  "Nullable": "false",
+                  "MaxLength": "10",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Material Document",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Number of Material Document"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "MaterialDocumentItem",
+                  "Type": "Edm.String",
+                  "Nullable": "false",
+                  "MaxLength": "4",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "NonNegative",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Material Document Item"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "MaterialDocumentYear",
+                  "Type": "Edm.String",
+                  "Nullable": "false",
+                  "MaxLength": "4",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "NonNegative",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Material Document Year"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "ManufacturerSerialNumber",
+                  "Type": "Edm.String",
+                  "MaxLength": "30",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Manuf. Serial Number",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Manufacturer's Serial Number"
+                }
+              },
+              {
+                "@attributes": {
+                  "Name": "SerialNumberIsRecursive",
+                  "Type": "Edm.String",
+                  "MaxLength": "1",
+                  "{http://www.sap.com/Protocols/SAPData}display-format": "UpperCase",
+                  "{http://www.sap.com/Protocols/SAPData}label": "Recursive SNo.",
+                  "{http://www.sap.com/Protocols/SAPData}quickinfo": "Indicator: Recursive serial numbers"
+                }
+              }
+            ]
+          }
+        ],
+        "{http://schemas.microsoft.com/ado/2008/09/edm}Association": [
+          {
+            "@attributes": {
+              "Name": "assoc_1108E069A43298B681C7DD076FEE7F8E",
+              "{http://www.sap.com/Protocols/SAPData}content-version": "1"
+            },
+            "{http://schemas.microsoft.com/ado/2008/09/edm}End": [
+              {
+                "@attributes": {
+                  "Type": "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItemType",
+                  "Multiplicity": "1",
+                  "Role": "FromRole_assoc_1108E069A43298B681C7DD076FEE7F8E"
+                }
+              },
+              {
+                "@attributes": {
+                  "Type": "API_MATERIAL_DOCUMENT_SRV.A_SerialNumberMaterialDocumentType",
+                  "Multiplicity": "*",
+                  "Role": "ToRole_assoc_1108E069A43298B681C7DD076FEE7F8E"
+                }
+              }
+            ]
+          },
+          {
+            "@attributes": {
+              "Name": "assoc_9241EE3C64DC6370D0509D8AA8DA2241",
+              "{http://www.sap.com/Protocols/SAPData}content-version": "1"
+            },
+            "{http://schemas.microsoft.com/ado/2008/09/edm}End": [
+              {
+                "@attributes": {
+                  "Type": "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentHeaderType",
+                  "Multiplicity": "1",
+                  "Role": "FromRole_assoc_9241EE3C64DC6370D0509D8AA8DA2241"
+                },
+                "{http://schemas.microsoft.com/ado/2008/09/edm}OnDelete": {
+                  "@attributes": {
+                    "Action": "Cascade"
+                  }
+                }
+              },
+              {
+                "@attributes": {
+                  "Type": "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItemType",
+                  "Multiplicity": "*",
+                  "Role": "ToRole_assoc_9241EE3C64DC6370D0509D8AA8DA2241"
+                }
+              }
+            ],
+            "{http://schemas.microsoft.com/ado/2008/09/edm}ReferentialConstraint": {
+              "{http://schemas.microsoft.com/ado/2008/09/edm}Principal": {
+                "@attributes": {
+                  "Role": "FromRole_assoc_9241EE3C64DC6370D0509D8AA8DA2241"
+                },
+                "{http://schemas.microsoft.com/ado/2008/09/edm}PropertyRef": [
+                  {
+                    "@attributes": {
+                      "Name": "MaterialDocument"
+                    }
+                  },
+                  {
+                    "@attributes": {
+                      "Name": "MaterialDocumentYear"
+                    }
+                  }
+                ]
+              },
+              "{http://schemas.microsoft.com/ado/2008/09/edm}Dependent": {
+                "@attributes": {
+                  "Role": "ToRole_assoc_9241EE3C64DC6370D0509D8AA8DA2241"
+                },
+                "{http://schemas.microsoft.com/ado/2008/09/edm}PropertyRef": [
+                  {
+                    "@attributes": {
+                      "Name": "MaterialDocument"
+                    }
+                  },
+                  {
+                    "@attributes": {
+                      "Name": "MaterialDocumentYear"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "{http://schemas.microsoft.com/ado/2008/09/edm}EntityContainer": {
+          "@attributes": {
+            "Name": "API_MATERIAL_DOCUMENT_SRV_Entities",
+            "{http://schemas.microsoft.com/ado/2007/08/dataservices/metadata}IsDefaultEntityContainer": "true",
+            "{http://www.sap.com/Protocols/SAPData}message-scope-supported": "true",
+            "{http://www.sap.com/Protocols/SAPData}supported-formats": "atom json xlsx"
+          },
+          "{http://schemas.microsoft.com/ado/2008/09/edm}EntitySet": [
+            {
+              "@attributes": {
+                "Name": "A_MaterialDocumentHeader",
+                "EntityType": "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentHeaderType",
+                "{http://www.sap.com/Protocols/SAPData}updatable": "false",
+                "{http://www.sap.com/Protocols/SAPData}deletable": "false",
+                "{http://www.sap.com/Protocols/SAPData}content-version": "1"
+              }
+            },
+            {
+              "@attributes": {
+                "Name": "A_MaterialDocumentItem",
+                "EntityType": "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItemType",
+                "{http://www.sap.com/Protocols/SAPData}creatable": "false",
+                "{http://www.sap.com/Protocols/SAPData}updatable": "false",
+                "{http://www.sap.com/Protocols/SAPData}deletable": "false",
+                "{http://www.sap.com/Protocols/SAPData}content-version": "1"
+              }
+            },
+            {
+              "@attributes": {
+                "Name": "A_SerialNumberMaterialDocument",
+                "EntityType": "API_MATERIAL_DOCUMENT_SRV.A_SerialNumberMaterialDocumentType",
+                "{http://www.sap.com/Protocols/SAPData}creatable": "false",
+                "{http://www.sap.com/Protocols/SAPData}updatable": "false",
+                "{http://www.sap.com/Protocols/SAPData}deletable": "false",
+                "{http://www.sap.com/Protocols/SAPData}content-version": "1"
+              }
+            }
+          ],
+          "{http://schemas.microsoft.com/ado/2008/09/edm}AssociationSet": [
+            {
+              "@attributes": {
+                "Name": "assoc_9241EE3C64DC6370D0509D8AA8DA2241",
+                "Association": "API_MATERIAL_DOCUMENT_SRV.assoc_9241EE3C64DC6370D0509D8AA8DA2241",
+                "{http://www.sap.com/Protocols/SAPData}creatable": "false",
+                "{http://www.sap.com/Protocols/SAPData}updatable": "false",
+                "{http://www.sap.com/Protocols/SAPData}deletable": "false",
+                "{http://www.sap.com/Protocols/SAPData}content-version": "1"
+              },
+              "{http://schemas.microsoft.com/ado/2008/09/edm}End": [
+                {
+                  "@attributes": {
+                    "EntitySet": "A_MaterialDocumentHeader",
+                    "Role": "FromRole_assoc_9241EE3C64DC6370D0509D8AA8DA2241"
+                  }
+                },
+                {
+                  "@attributes": {
+                    "EntitySet": "A_MaterialDocumentItem",
+                    "Role": "ToRole_assoc_9241EE3C64DC6370D0509D8AA8DA2241"
+                  }
+                }
+              ]
+            },
+            {
+              "@attributes": {
+                "Name": "assoc_1108E069A43298B681C7DD076FEE7F8E",
+                "Association": "API_MATERIAL_DOCUMENT_SRV.assoc_1108E069A43298B681C7DD076FEE7F8E",
+                "{http://www.sap.com/Protocols/SAPData}creatable": "false",
+                "{http://www.sap.com/Protocols/SAPData}updatable": "false",
+                "{http://www.sap.com/Protocols/SAPData}deletable": "false",
+                "{http://www.sap.com/Protocols/SAPData}content-version": "1"
+              },
+              "{http://schemas.microsoft.com/ado/2008/09/edm}End": [
+                {
+                  "@attributes": {
+                    "EntitySet": "A_MaterialDocumentItem",
+                    "Role": "FromRole_assoc_1108E069A43298B681C7DD076FEE7F8E"
+                  }
+                },
+                {
+                  "@attributes": {
+                    "EntitySet": "A_SerialNumberMaterialDocument",
+                    "Role": "ToRole_assoc_1108E069A43298B681C7DD076FEE7F8E"
+                  }
+                }
+              ]
+            }
+          ],
+          "{http://schemas.microsoft.com/ado/2008/09/edm}FunctionImport": [
+            {
+              "@attributes": {
+                "Name": "Cancel",
+                "ReturnType": "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentHeaderType",
+                "EntitySet": "A_MaterialDocumentHeader",
+                "{http://schemas.microsoft.com/ado/2007/08/dataservices/metadata}HttpMethod": "POST",
+                "{http://www.sap.com/Protocols/SAPData}action-for": "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentHeaderType"
+              },
+              "{http://schemas.microsoft.com/ado/2008/09/edm}Parameter": [
+                {
+                  "@attributes": {
+                    "Name": "MaterialDocumentYear",
+                    "Type": "Edm.String",
+                    "Mode": "In",
+                    "MaxLength": "4",
+                    "{http://www.sap.com/Protocols/SAPData}label": "Material Doc. Year"
+                  }
+                },
+                {
+                  "@attributes": {
+                    "Name": "MaterialDocument",
+                    "Type": "Edm.String",
+                    "Mode": "In",
+                    "MaxLength": "10",
+                    "{http://www.sap.com/Protocols/SAPData}label": "Material Document"
+                  }
+                },
+                {
+                  "@attributes": {
+                    "Name": "PostingDate",
+                    "Type": "Edm.DateTime",
+                    "Mode": "In",
+                    "Precision": "0",
+                    "Nullable": "true",
+                    "{http://www.sap.com/Protocols/SAPData}label": "Posting Date"
+                  }
+                }
+              ]
+            },
+            {
+              "@attributes": {
+                "Name": "CancelItem",
+                "ReturnType": "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItemType",
+                "EntitySet": "A_MaterialDocumentItem",
+                "{http://schemas.microsoft.com/ado/2007/08/dataservices/metadata}HttpMethod": "POST",
+                "{http://www.sap.com/Protocols/SAPData}action-for": "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItemType"
+              },
+              "{http://schemas.microsoft.com/ado/2008/09/edm}Parameter": [
+                {
+                  "@attributes": {
+                    "Name": "MaterialDocumentYear",
+                    "Type": "Edm.String",
+                    "Mode": "In",
+                    "MaxLength": "4",
+                    "{http://www.sap.com/Protocols/SAPData}label": "Material Doc. Year"
+                  }
+                },
+                {
+                  "@attributes": {
+                    "Name": "MaterialDocument",
+                    "Type": "Edm.String",
+                    "Mode": "In",
+                    "MaxLength": "10",
+                    "{http://www.sap.com/Protocols/SAPData}label": "Material Document"
+                  }
+                },
+                {
+                  "@attributes": {
+                    "Name": "MaterialDocumentItem",
+                    "Type": "Edm.String",
+                    "Mode": "In",
+                    "MaxLength": "4",
+                    "{http://www.sap.com/Protocols/SAPData}label": "Material Doc.Item"
+                  }
+                },
+                {
+                  "@attributes": {
+                    "Name": "PostingDate",
+                    "Type": "Edm.DateTime",
+                    "Mode": "In",
+                    "Precision": "0",
+                    "Nullable": "true",
+                    "{http://www.sap.com/Protocols/SAPData}label": "Posting Date"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "{http://docs.oasis-open.org/odata/ns/edm}Annotation": {
+          "@attributes": {
+            "Term": "Core.SchemaVersion",
+            "String": "1.5.0"
+          }
+        },
+        "{http://docs.oasis-open.org/odata/ns/edm}Annotations": [
+          {
+            "@attributes": {
+              "Target": "API_MATERIAL_DOCUMENT_SRV.API_MATERIAL_DOCUMENT_SRV_Entities"
+            },
+            "{http://docs.oasis-open.org/odata/ns/edm}Annotation": {
+              "@attributes": {
+                "Term": "Common.ApplyMultiUnitBehaviorForSortingAndFiltering",
+                "Bool": "true"
+              }
+            }
+          },
+          {
+            "@attributes": {
+              "Target": "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentHeaderType/to_MaterialDocumentItem"
+            },
+            "{http://docs.oasis-open.org/odata/ns/edm}Annotation": {
+              "@attributes": {
+                "Term": "Common.Composition"
+              }
+            }
+          },
+          {
+            "@attributes": {
+              "Target": "API_MATERIAL_DOCUMENT_SRV.API_MATERIAL_DOCUMENT_SRV_Entities/A_MaterialDocumentHeader"
+            },
+            "{http://docs.oasis-open.org/odata/ns/edm}Annotation": {
+              "@attributes": {
+                "Term": "Capabilities.NavigationRestrictions"
+              },
+              "{http://docs.oasis-open.org/odata/ns/edm}Record": {
+                "{http://docs.oasis-open.org/odata/ns/edm}PropertyValue": {
+                  "@attributes": {
+                    "Property": "RestrictedProperties"
+                  },
+                  "{http://docs.oasis-open.org/odata/ns/edm}Collection": {
+                    "{http://docs.oasis-open.org/odata/ns/edm}Record": {
+                      "{http://docs.oasis-open.org/odata/ns/edm}PropertyValue": [
+                        {
+                          "@attributes": {
+                            "Property": "NavigationProperty",
+                            "NavigationPropertyPath": "to_MaterialDocumentItem"
+                          }
+                        },
+                        {
+                          "@attributes": {
+                            "Property": "InsertRestrictions"
+                          },
+                          "{http://docs.oasis-open.org/odata/ns/edm}Record": {
+                            "{http://docs.oasis-open.org/odata/ns/edm}PropertyValue": {
+                              "@attributes": {
+                                "Property": "Insertable",
+                                "Bool": "false"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "@attributes": {
+              "Target": "API_MATERIAL_DOCUMENT_SRV.API_MATERIAL_DOCUMENT_SRV_Entities/A_MaterialDocumentItem"
+            },
+            "{http://docs.oasis-open.org/odata/ns/edm}Annotation": {
+              "@attributes": {
+                "Term": "Capabilities.NavigationRestrictions"
+              },
+              "{http://docs.oasis-open.org/odata/ns/edm}Record": {
+                "{http://docs.oasis-open.org/odata/ns/edm}PropertyValue": {
+                  "@attributes": {
+                    "Property": "RestrictedProperties"
+                  },
+                  "{http://docs.oasis-open.org/odata/ns/edm}Collection": {
+                    "{http://docs.oasis-open.org/odata/ns/edm}Record": [
+                      {
+                        "{http://docs.oasis-open.org/odata/ns/edm}PropertyValue": [
+                          {
+                            "@attributes": {
+                              "Property": "NavigationProperty",
+                              "NavigationPropertyPath": "to_MaterialDocumentHeader"
+                            }
+                          },
+                          {
+                            "@attributes": {
+                              "Property": "InsertRestrictions"
+                            },
+                            "{http://docs.oasis-open.org/odata/ns/edm}Record": {
+                              "{http://docs.oasis-open.org/odata/ns/edm}PropertyValue": {
+                                "@attributes": {
+                                  "Property": "Insertable",
+                                  "Bool": "false"
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "{http://docs.oasis-open.org/odata/ns/edm}PropertyValue": [
+                          {
+                            "@attributes": {
+                              "Property": "NavigationProperty",
+                              "NavigationPropertyPath": "to_SerialNumbers"
+                            }
+                          },
+                          {
+                            "@attributes": {
+                              "Property": "InsertRestrictions"
+                            },
+                            "{http://docs.oasis-open.org/odata/ns/edm}Record": {
+                              "{http://docs.oasis-open.org/odata/ns/edm}PropertyValue": {
+                                "@attributes": {
+                                  "Property": "Insertable",
+                                  "Bool": "false"
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          {
+            "@attributes": {
+              "Target": "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentHeaderType/CtrlPostgForExtWhseMgmtSyst"
+            },
+            "{http://docs.oasis-open.org/odata/ns/edm}Annotation": {
+              "@attributes": {
+                "Term": "Common.SAPObjectNodeTypeReference",
+                "String": "CtrlPostgForExtWhseMgmtSyst"
+              }
+            }
+          },
+          {
+            "@attributes": {
+              "Target": "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentHeaderType/GoodsMovementCode"
+            },
+            "{http://docs.oasis-open.org/odata/ns/edm}Annotation": {
+              "@attributes": {
+                "Term": "Common.SAPObjectNodeTypeReference",
+                "String": "GoodsMovementCode"
+              }
+            }
+          },
+          {
+            "@attributes": {
+              "Target": "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentHeaderType/InventoryTransactionType"
+            },
+            "{http://docs.oasis-open.org/odata/ns/edm}Annotation": {
+              "@attributes": {
+                "Term": "Common.SAPObjectNodeTypeReference",
+                "String": "InventoryTransactionType"
+              }
+            }
+          },
+          {
+            "@attributes": {
+              "Target": "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItemType/AccountAssignmentCategory"
+            },
+            "{http://docs.oasis-open.org/odata/ns/edm}Annotation": {
+              "@attributes": {
+                "Term": "Common.SAPObjectNodeTypeReference",
+                "String": "AccountAssignmentCategory"
+              }
+            }
+          },
+          {
+            "@attributes": {
+              "Target": "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItemType/CompanyCodeCurrency"
+            },
+            "{http://docs.oasis-open.org/odata/ns/edm}Annotation": {
+              "@attributes": {
+                "Term": "Common.SAPObjectNodeTypeReference",
+                "String": "Currency"
+              }
+            }
+          },
+          {
+            "@attributes": {
+              "Target": "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItemType/EWMWarehouse"
+            },
+            "{http://docs.oasis-open.org/odata/ns/edm}Annotation": {
+              "@attributes": {
+                "Term": "Common.SAPObjectNodeTypeReference",
+                "String": "Warehouse"
+              }
+            }
+          },
+          {
+            "@attributes": {
+              "Target": "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItemType/FiscalYearVariant"
+            },
+            "{http://docs.oasis-open.org/odata/ns/edm}Annotation": {
+              "@attributes": {
+                "Term": "Common.SAPObjectNodeTypeReference",
+                "String": "FiscalYearVariant"
+              }
+            }
+          },
+          {
+            "@attributes": {
+              "Target": "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItemType/GoodsMovementReasonCode"
+            },
+            "{http://docs.oasis-open.org/odata/ns/edm}Annotation": {
+              "@attributes": {
+                "Term": "Common.SAPObjectNodeTypeReference",
+                "String": "GoodsMovementReason"
+              }
+            }
+          },
+          {
+            "@attributes": {
+              "Target": "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItemType/GoodsMovementRefDocType"
+            },
+            "{http://docs.oasis-open.org/odata/ns/edm}Annotation": {
+              "@attributes": {
+                "Term": "Common.SAPObjectNodeTypeReference",
+                "String": "GoodsMovementReferenceDocType"
+              }
+            }
+          },
+          {
+            "@attributes": {
+              "Target": "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItemType/GoodsMovementType"
+            },
+            "{http://docs.oasis-open.org/odata/ns/edm}Annotation": {
+              "@attributes": {
+                "Term": "Common.SAPObjectNodeTypeReference",
+                "String": "GoodsMovementType"
+              }
+            }
+          },
+          {
+            "@attributes": {
+              "Target": "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItemType/InventorySpecialStockType"
+            },
+            "{http://docs.oasis-open.org/odata/ns/edm}Annotation": {
+              "@attributes": {
+                "Term": "Common.SAPObjectNodeTypeReference",
+                "String": "InventorySpecialStockType"
+              }
+            }
+          },
+          {
+            "@attributes": {
+              "Target": "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItemType/InventoryStockType"
+            },
+            "{http://docs.oasis-open.org/odata/ns/edm}Annotation": {
+              "@attributes": {
+                "Term": "Common.SAPObjectNodeTypeReference",
+                "String": "InventoryStockType"
+              }
+            }
+          },
+          {
+            "@attributes": {
+              "Target": "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItemType/InventoryUsabilityCode"
+            },
+            "{http://docs.oasis-open.org/odata/ns/edm}Annotation": {
+              "@attributes": {
+                "Term": "Common.SAPObjectNodeTypeReference",
+                "String": "InventoryUsabilityCode"
+              }
+            }
+          },
+          {
+            "@attributes": {
+              "Target": "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItemType/InventoryValuationType"
+            },
+            "{http://docs.oasis-open.org/odata/ns/edm}Annotation": {
+              "@attributes": {
+                "Term": "Common.SAPObjectNodeTypeReference",
+                "String": "ProductValuationType"
+              }
+            }
+          },
+          {
+            "@attributes": {
+              "Target": "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItemType/IssgOrRcvgSpclStockInd"
+            },
+            "{http://docs.oasis-open.org/odata/ns/edm}Annotation": {
+              "@attributes": {
+                "Term": "Common.SAPObjectNodeTypeReference",
+                "String": "InventorySpecialStockType"
+              }
+            }
+          },
+          {
+            "@attributes": {
+              "Target": "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItemType/IssuingOrReceivingStockType"
+            },
+            "{http://docs.oasis-open.org/odata/ns/edm}Annotation": {
+              "@attributes": {
+                "Term": "Common.SAPObjectNodeTypeReference",
+                "String": "InventoryStockType"
+              }
+            }
+          },
+          {
+            "@attributes": {
+              "Target": "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItemType/IssuingOrReceivingValType"
+            },
+            "{http://docs.oasis-open.org/odata/ns/edm}Annotation": {
+              "@attributes": {
+                "Term": "Common.SAPObjectNodeTypeReference",
+                "String": "ProductValuationType"
+              }
+            }
+          },
+          {
+            "@attributes": {
+              "Target": "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItemType/MaterialDocumentPostingType"
+            },
+            "{http://docs.oasis-open.org/odata/ns/edm}Annotation": {
+              "@attributes": {
+                "Term": "Common.SAPObjectNodeTypeReference",
+                "String": "MaterialDocumentPostingType"
+              }
+            }
+          },
+          {
+            "@attributes": {
+              "Target": "API_MATERIAL_DOCUMENT_SRV.A_MaterialDocumentItemType/StorageLocation"
+            },
+            "{http://docs.oasis-open.org/odata/ns/edm}Annotation": {
+              "@attributes": {
+                "Term": "Common.SAPObjectNodeTypeReference",
+                "String": "StorageLocation"
+              }
+            }
+          },
+          {
+            "@attributes": {
+              "Target": "API_MATERIAL_DOCUMENT_SRV.API_MATERIAL_DOCUMENT_SRV_Entities/A_MaterialDocumentHeader"
+            },
+            "{http://docs.oasis-open.org/odata/ns/edm}Annotation": [
+              {
+                "@attributes": {
+                  "Term": "Capabilities.ReadRestrictions"
+                },
+                "{http://docs.oasis-open.org/odata/ns/edm}Record": {
+                  "{http://docs.oasis-open.org/odata/ns/edm}PropertyValue": [
+                    {
+                      "@attributes": {
+                        "Property": "Description",
+                        "String": "Reads information on material document header level"
+                      }
+                    },
+                    {
+                      "@attributes": {
+                        "Property": "LongDescription",
+                        "String": "Reads material document header information to get an overview of the material document postings."
+                      }
+                    },
+                    {
+                      "@attributes": {
+                        "Property": "ReadByKeyRestrictions"
+                      },
+                      "{http://docs.oasis-open.org/odata/ns/edm}Record": {
+                        "{http://docs.oasis-open.org/odata/ns/edm}PropertyValue": [
+                          {
+                            "@attributes": {
+                              "Property": "Description",
+                              "String": "Reads information for a specific material document header"
+                            }
+                          },
+                          {
+                            "@attributes": {
+                              "Property": "LongDescription",
+                              "String": "Reads material document header information for a specific material document to get an overview of the material document posting."
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "@attributes": {
+                  "Term": "Capabilities.NavigationRestrictions"
+                },
+                "{http://docs.oasis-open.org/odata/ns/edm}Record": {
+                  "{http://docs.oasis-open.org/odata/ns/edm}PropertyValue": {
+                    "@attributes": {
+                      "Property": "RestrictedProperties"
+                    },
+                    "{http://docs.oasis-open.org/odata/ns/edm}Collection": {
+                      "{http://docs.oasis-open.org/odata/ns/edm}Record": {
+                        "{http://docs.oasis-open.org/odata/ns/edm}PropertyValue": [
+                          {
+                            "@attributes": {
+                              "Property": "NavigationProperty",
+                              "NavigationPropertyPath": "to_MaterialDocumentItem"
+                            }
+                          },
+                          {
+                            "@attributes": {
+                              "Property": "ReadRestrictions"
+                            },
+                            "{http://docs.oasis-open.org/odata/ns/edm}Record": {
+                              "{http://docs.oasis-open.org/odata/ns/edm}PropertyValue": [
+                                {
+                                  "@attributes": {
+                                    "Property": "Description",
+                                    "String": "Reads information for a specific material document header and material document items"
+                                  }
+                                },
+                                {
+                                  "@attributes": {
+                                    "Property": "LongDescription",
+                                    "String": "Reads material document header and material documents items information for a specific material document to get an overview of the material document posting."
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "@attributes": {
+                  "Term": "Capabilities.InsertRestrictions"
+                },
+                "{http://docs.oasis-open.org/odata/ns/edm}Record": {
+                  "{http://docs.oasis-open.org/odata/ns/edm}PropertyValue": [
+                    {
+                      "@attributes": {
+                        "Property": "Description",
+                        "String": "Creates a material document"
+                      }
+                    },
+                    {
+                      "@attributes": {
+                        "Property": "LongDescription",
+                        "String": "Creates a material document compost by header and item for a specific business process."
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "@attributes": {
+              "Target": "API_MATERIAL_DOCUMENT_SRV.API_MATERIAL_DOCUMENT_SRV_Entities/Cancel"
+            },
+            "{http://docs.oasis-open.org/odata/ns/edm}Annotation": [
+              {
+                "@attributes": {
+                  "Term": "Core.Description",
+                  "String": "Cancels a material document"
+                }
+              },
+              {
+                "@attributes": {
+                  "Term": "Core.LongDescription",
+                  "String": "Cancels a complete material document that you specify by the material document number and year."
+                }
+              }
+            ]
+          },
+          {
+            "@attributes": {
+              "Target": "API_MATERIAL_DOCUMENT_SRV.API_MATERIAL_DOCUMENT_SRV_Entities/A_MaterialDocumentItem"
+            },
+            "{http://docs.oasis-open.org/odata/ns/edm}Annotation": {
+              "@attributes": {
+                "Term": "Capabilities.ReadRestrictions"
+              },
+              "{http://docs.oasis-open.org/odata/ns/edm}Record": {
+                "{http://docs.oasis-open.org/odata/ns/edm}PropertyValue": [
+                  {
+                    "@attributes": {
+                      "Property": "Description",
+                      "String": "Reads information on material document items level"
+                    }
+                  },
+                  {
+                    "@attributes": {
+                      "Property": "LongDescription",
+                      "String": "Reads material document items information to get an overview of the material document postings."
+                    }
+                  },
+                  {
+                    "@attributes": {
+                      "Property": "ReadByKeyRestrictions"
+                    },
+                    "{http://docs.oasis-open.org/odata/ns/edm}Record": {
+                      "{http://docs.oasis-open.org/odata/ns/edm}PropertyValue": [
+                        {
+                          "@attributes": {
+                            "Property": "Description",
+                            "String": "Reads information on material document items level for a specific material document"
+                          }
+                        },
+                        {
+                          "@attributes": {
+                            "Property": "LongDescription",
+                            "String": "Reads material document items information for a specific material document and year to get an overview of the material document postings."
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "@attributes": {
+              "Target": "API_MATERIAL_DOCUMENT_SRV.API_MATERIAL_DOCUMENT_SRV_Entities/A_MaterialDocumentItem"
+            },
+            "{http://docs.oasis-open.org/odata/ns/edm}Annotation": {
+              "@attributes": {
+                "Term": "Capabilities.NavigationRestrictions"
+              },
+              "{http://docs.oasis-open.org/odata/ns/edm}Record": {
+                "{http://docs.oasis-open.org/odata/ns/edm}PropertyValue": {
+                  "@attributes": {
+                    "Property": "RestrictedProperties"
+                  },
+                  "{http://docs.oasis-open.org/odata/ns/edm}Collection": {
+                    "{http://docs.oasis-open.org/odata/ns/edm}Record": [
+                      {
+                        "{http://docs.oasis-open.org/odata/ns/edm}PropertyValue": [
+                          {
+                            "@attributes": {
+                              "Property": "NavigationProperty",
+                              "NavigationPropertyPath": "to_MaterialDocumentHeader"
+                            }
+                          },
+                          {
+                            "@attributes": {
+                              "Property": "ReadRestrictions"
+                            },
+                            "{http://docs.oasis-open.org/odata/ns/edm}Record": {
+                              "{http://docs.oasis-open.org/odata/ns/edm}PropertyValue": [
+                                {
+                                  "@attributes": {
+                                    "Property": "Description",
+                                    "String": "Reads information on material document item and header level for a specific material document item"
+                                  }
+                                },
+                                {
+                                  "@attributes": {
+                                    "Property": "LongDescription",
+                                    "String": "Reads material document item and header information for a specific material document, year and item to get an overview of the material document posting."
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "{http://docs.oasis-open.org/odata/ns/edm}PropertyValue": [
+                          {
+                            "@attributes": {
+                              "Property": "NavigationProperty",
+                              "NavigationPropertyPath": "to_SerialNumbers"
+                            }
+                          },
+                          {
+                            "@attributes": {
+                              "Property": "ReadRestrictions"
+                            },
+                            "{http://docs.oasis-open.org/odata/ns/edm}Record": {
+                              "{http://docs.oasis-open.org/odata/ns/edm}PropertyValue": [
+                                {
+                                  "@attributes": {
+                                    "Property": "Description",
+                                    "String": "Reads information on serial numbers for a specific material document item"
+                                  }
+                                },
+                                {
+                                  "@attributes": {
+                                    "Property": "LongDescription",
+                                    "String": "Reads information on serial numbers for a specific material document item to get an overview of the posted serial numbers."
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          {
+            "@attributes": {
+              "Target": "API_MATERIAL_DOCUMENT_SRV.API_MATERIAL_DOCUMENT_SRV_Entities/CancelItem"
+            },
+            "{http://docs.oasis-open.org/odata/ns/edm}Annotation": [
+              {
+                "@attributes": {
+                  "Term": "Core.Description",
+                  "String": "Cancels a material document item"
+                }
+              },
+              {
+                "@attributes": {
+                  "Term": "Core.LongDescription",
+                  "String": "Cancels a material document item that you specify by the material document number, year and item number."
+                }
+              }
+            ]
+          },
+          {
+            "@attributes": {
+              "Target": "API_MATERIAL_DOCUMENT_SRV.API_MATERIAL_DOCUMENT_SRV_Entities/A_SerialNumberMaterialDocument"
+            },
+            "{http://docs.oasis-open.org/odata/ns/edm}Annotation": {
+              "@attributes": {
+                "Term": "Capabilities.ReadRestrictions"
+              },
+              "{http://docs.oasis-open.org/odata/ns/edm}Record": {
+                "{http://docs.oasis-open.org/odata/ns/edm}PropertyValue": [
+                  {
+                    "@attributes": {
+                      "Property": "Description",
+                      "String": "Reads information of serial numbers on material document items level"
+                    }
+                  },
+                  {
+                    "@attributes": {
+                      "Property": "LongDescription",
+                      "String": "Reads information of serial numbers of material document items to get an overview of the posted serial numbers."
+                    }
+                  },
+                  {
+                    "@attributes": {
+                      "Property": "ReadByKeyRestrictions"
+                    },
+                    "{http://docs.oasis-open.org/odata/ns/edm}Record": {
+                      "{http://docs.oasis-open.org/odata/ns/edm}PropertyValue": [
+                        {
+                          "@attributes": {
+                            "Property": "Description",
+                            "String": "Reads information of serial number on material document item level for a specific material document, item, year and material"
+                          }
+                        },
+                        {
+                          "@attributes": {
+                            "Property": "LongDescription",
+                            "String": "Reads information of serial number of a specific material document, item, year and material to get an overview of the posted serial numbers."
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "@attributes": {
+              "Target": "API_MATERIAL_DOCUMENT_SRV.API_MATERIAL_DOCUMENT_SRV_Entities"
+            }
+          }
+        ],
+        "{http://www.w3.org/2005/Atom}link": [
+          {
+            "@attributes": {
+              "rel": "self",
+              "href": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/$metadata"
+            }
+          },
+          {
+            "@attributes": {
+              "rel": "latest-version",
+              "href": "/sap/opu/odata/sap/API_MATERIAL_DOCUMENT_SRV/$metadata"
+            }
+          }
+        ]
+      }
+    }
+  }
+}
