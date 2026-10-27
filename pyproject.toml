@@ -6,7 +6,7 @@ description = "SAP bulk uploads (DEV): the installable twin of the Streamlit DEV
 requires-python = ">=3.12,<3.13"
 dependencies = [
     "flet==1.0.5",
-    "pandas==2.2.2",
+    "pandas==2.2.3",
     "openpyxl>=3.1",
     "requests>=2.31",
 ]
