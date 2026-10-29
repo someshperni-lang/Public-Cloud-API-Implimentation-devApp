@@ -39,6 +39,8 @@ ENVIRONMENT = "DEV"
 TABS = [
     {"label": "Material PO texts", "icon": "📝",
      "scripts": {"ptext": "bulk_product_purchase_text_upload"}},
+    {"label": "Purchase requisitions", "icon": "📋",
+     "scripts": {"pr": "bulk_purchase_requisition_upload"}},
     {"label": "Purchase orders", "icon": "🛒", "picker": "Purchase order type",
      "scripts": {"po": "bulk_purchase_order_upload",
                  "subcon": "bulk_subcontracting_po_upload"}},
@@ -365,7 +367,7 @@ class App:
             txt(f"System: {ENVIRONMENT}", 16, "white", ft.FontWeight.W_700),
             txt(sc.DEV_HOST, 13, ft.Colors.with_opacity(0.85, "white"), selectable=True),
             ft.Divider(color=ft.Colors.with_opacity(0.25, "white")),
-            txt("Flow: material PO texts, order, receive, invoice. Each tab builds payloads "
+            txt("Flow: material PO texts, requisition, order, receive, invoice. Each tab builds payloads "
                 "with the script's own logic and checks them against the DEV metadata, so a "
                 "preview here matches --dry-run exactly.", 13,
                 ft.Colors.with_opacity(0.75, "white")),

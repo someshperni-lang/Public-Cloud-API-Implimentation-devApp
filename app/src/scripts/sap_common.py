@@ -497,8 +497,11 @@ def credentials_from_env() -> tuple[str, str]:
 def extract_error(resp) -> str:
     try:
         err = resp.json()["error"]
-        msg = err["message"]["value"]
-        details = [d.get("message", "") for d in err.get("innererror", {}).get("errordetails", [])]
+        msg = err["message"]
+        msg = msg.get("value", "") if isinstance(msg, dict) else str(msg)   # V2 dict, V4 text
+        details = [d.get("message", "") for d in
+                   err.get("innererror", {}).get("errordetails", [])    # OData V2
+                   + err.get("details", [])]                            # OData V4
         details = [d for d in dict.fromkeys(details) if d and d != msg]
         return " | ".join([msg] + details)
     except Exception:
