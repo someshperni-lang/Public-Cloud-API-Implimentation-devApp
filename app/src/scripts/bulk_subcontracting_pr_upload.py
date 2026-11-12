@@ -74,7 +74,8 @@ count_items = pr.count_items
 # Columns
 # ---------------------------------------------------------------------------
 HEADER_COLUMNS = list(pr.HEADER_FIELDS)
-ITEM_COLUMNS = ["PurchaseRequisitionItem", "PurchaseRequisitionItemText", "Material",
+ITEM_COLUMNS = ["PurchaseRequisitionItem", "PurchaseRequisitionItemText",
+                "PurchasingDocumentItemCategory", "Material",
                 "RequestedQuantity", "BaseUnit", "BaseUnitISOCode", "Plant", "StorageLocation",
                 "PurchasingGroup", "PurchasingOrganization", "Subcontractor", "FixedSupplier",
                 "Supplier", "PurchasingInfoRecord", "PurchaseContract", "PurchaseContractItem",
@@ -108,6 +109,8 @@ COLUMN_NOTES.update({
                                "subcontracting PR type.",
     "PurchaseRequisitionItem": "Item number, e.g. 10 - links Items, ScheduleLines and Components. "
                                "Blank in a flat sheet = one item per row, numbered by SAP.",
+    "PurchasingDocumentItemCategory": "Item category - always sent as 3 (subcontracting). "
+                                      "Blank, L or 3; anything else is rejected.",
     "Material": "Required. The finished / semi-finished material the subcontractor makes. "
                 "It needs a BOM in the plant (SAP takes the components from it).",
     "RequestedQuantity": "Item quantity. Optional when the schedule lines give the quantities; "
@@ -140,6 +143,7 @@ COLUMN_NOTES.update({
 SAMPLE_ROWS = [      # flat: one row per component
     {"PR_Ref": "SPR1", "PurchaseRequisitionType": "ZDOM", "PurReqnDescription": "Subcontracting",
      "PurchaseRequisitionItem": "10", "PurchaseRequisitionItemText": "Machining of FG228",
+     "PurchasingDocumentItemCategory": "L",
      "Material": "FG228", "RequestedQuantity": "100", "BaseUnit": "PC", "Plant": "01TG",
      "PurchasingGroup": "002", "Subcontractor": "18300010", "ScheduleLine": "1",
      "DeliveryDate": "2026-12-15", "ScheduleLineQuantity": "60",
@@ -151,7 +155,8 @@ SAMPLE_ROWS = [      # flat: one row per component
      "ComponentReservationItem": "1", "ComponentMaterial": "RM019",
      "ComponentRequirementDate": "2026-12-24", "ComponentQuantity": "40",
      "ComponentUnit": "KG", "ComponentPlant": "01TG"},
-    {"PR_Ref": "SPR1", "PurchaseRequisitionItem": "20", "Material": "FG229",
+    {"PR_Ref": "SPR1", "PurchaseRequisitionItem": "20", "PurchasingDocumentItemCategory": "L",
+     "Material": "FG229",
      "RequestedQuantity": "50", "BaseUnit": "PC", "Plant": "01TG", "PurchasingGroup": "002",
      "Subcontractor": "18300010", "ItemText": "Return the scrap with the finished goods.",
      "ScheduleLine": "1", "DeliveryDate": "2026-12-20", "ScheduleLineQuantity": "50",

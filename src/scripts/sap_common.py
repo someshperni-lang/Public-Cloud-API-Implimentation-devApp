@@ -28,6 +28,7 @@ import requests
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 METADATA_DIR = BASE_DIR / "metadata"
+PAYLOAD_DIR = METADATA_DIR / "payloads"      # API Hub sample payloads: <SERVICE>_payload.json
 
 # ----------------------------------------------------------------------------
 # Metadata
@@ -117,8 +118,121 @@ class ServiceMetadata:
 _METADATA_CACHE: dict[str, ServiceMetadata] = {}
 
 
-def load_metadata(service: str, metadata_dir: Path | None = None) -> ServiceMetadata | None:
-    """Find and parse the metadata JSON for a service (e.g. API_PRODUCT_SRV)."""
+class PayloadMetadata:
+    """Metadata built from an API Hub sample payload (<SERVICE>_payload.json).
+
+    Used for services without an EDMX metadata file (the OData V4 purchase
+    requisition API). Same interface as ServiceMetadata: field names and nesting
+    come from the sample, types from the sample values, and the maximum length
+    from short sample strings ("stri" = 4 characters; "string" = no limit known).
+    """
+
+    ROOTS = {"API_PURCHASEREQUISITION_2": "PurchaseReqn",
+             "API_PURCHASEORDER_PROCESS_SRV": "A_PurchaseOrder",
+             "API_MATERIAL_DOCUMENT_SRV": "A_MaterialDocumentHeader",
+             "API_SUPPLIERINVOICE_PROCESS_SRV": "A_SupplierInvoice"}
+    SKIP = {"SAP__Messages", "__metadata"}
+    V4_PATHS = {"API_PURCHASEREQUISITION_2":
+                "/sap/opu/odata4/sap/api_purchaserequisition_2/srvd_a2x/sap/purchaserequisition/0001"}
+
+    def __init__(self, service: str, path: Path):
+        self.service = service
+        self.path = Path(path)
+        self.sample = json.loads(self.path.read_text(encoding="utf-8"))
+        self.entity_types: dict[str, dict] = {}
+        self.entity_sets: dict[str, dict] = {}
+        self.root = self.ROOTS.get(service, service)
+        self.url = (f"{DEV_HOST}{self.V4_PATHS[service]}" if service in self.V4_PATHS
+                    else service_url(service))
+        self._order: list[str] = []
+        self._walk(self.root, self.sample)
+        # header first, then items, then their sub-entities (the order of the payload)
+        self.entity_sets = {n: self.entity_sets[n] for n in self._order}
+        self.entity_types = {n: self.entity_types[n] for n in self._order}
+
+    @staticmethod
+    def _type(v) -> dict:
+        if isinstance(v, bool):
+            return {"Type": "Edm.Boolean"}
+        if isinstance(v, (int, float)):
+            return {"Type": "Edm.Decimal"}
+        s = str(v)
+        if re.fullmatch(r"\d{4}-\d{2}-\d{2}", s):
+            return {"Type": "Edm.Date"}
+        if s.startswith("/Date("):
+            return {"Type": "Edm.DateTime"}
+        if re.fullmatch(r"PT\d+H\d+M\d+S", s):
+            return {"Type": "Edm.Time"}
+        if s == "0":
+            return {"Type": "Edm.Decimal"}
+        out = {"Type": "Edm.String"}
+        if s != "string" and "string".startswith(s):     # "s", "st", "str", "stri", "strin"
+            out["MaxLength"] = str(len(s))
+        return out
+
+    def _walk(self, name: str, obj: dict):
+        self._order.append(name)
+        props, navs = {}, {}
+        for k, v in obj.items():
+            if k in self.SKIP:
+                continue
+            if isinstance(v, dict) and "results" in v:
+                child = v["results"][0] if v["results"] else {}
+                target = self._child_name(k)
+                navs[k] = {"Target": target, "Many": True}
+                self._walk(target, child)
+            elif isinstance(v, list):
+                if v and isinstance(v[0], dict):
+                    target = self._child_name(k)
+                    navs[k] = {"Target": target, "Many": True}
+                    self._walk(target, v[0])
+            elif isinstance(v, dict):
+                target = self._child_name(k)
+                navs[k] = {"Target": target, "Many": False}
+                self._walk(target, v)
+            elif (k.startswith("_") or k.startswith("to_")) and v == "string":
+                continue                                    # back-link, not a field
+            else:
+                props[k] = {"Name": k, **self._type(v)}
+        self.entity_types[name] = {"label": "", "keys": [], "props": props, "navs": navs}
+        self.entity_sets[name] = {"Name": name, "EntityTypeName": name, "creatable": "true",
+                                  "updatable": "true", "deletable": "true",
+                                  "source": "API Hub sample payload"}
+
+    @staticmethod
+    def _child_name(nav: str) -> str:
+        return nav[3:] if nav.startswith("to_") else nav.lstrip("_")
+
+    def nav_target(self, entity_type: str, nav: str) -> tuple[str, bool]:
+        n = self.entity_types[entity_type]["navs"][nav]
+        return n["Target"], n["Many"]
+
+    def field(self, entity_type: str, name: str) -> dict | None:
+        et = self.entity_types.get(entity_type)
+        return et["props"].get(name) if et else None
+
+    def fields_table(self, entity_type: str) -> list[dict]:
+        return [{"Field": n, "Label": "", "Type": p.get("Type", "").replace("Edm.", ""),
+                 "MaxLength": p.get("MaxLength", ""), "Key": "", "Creatable": "X",
+                 "Updatable": "X", "Description": "From the API Hub sample payload"}
+                for n, p in self.entity_types[entity_type]["props"].items()]
+
+
+def payload_sample(service: str, metadata_dir: Path | None = None) -> dict | None:
+    """The API Hub sample payload of a service, if metadata/payloads has one."""
+    folder = Path(metadata_dir or METADATA_DIR) / "payloads"
+    f = folder / f"{service}_payload.json"
+    if f.exists():
+        try:
+            return json.loads(f.read_text(encoding="utf-8"))
+        except ValueError:
+            return None
+    return None
+
+
+def load_metadata(service: str, metadata_dir: Path | None = None):
+    """Metadata for a service: the EDMX JSON (e.g. API_PRODUCT_SRV_0001.json), else the
+    API Hub sample payload in metadata/payloads (<SERVICE>_payload.json)."""
     if service in _METADATA_CACHE:
         return _METADATA_CACHE[service]
     folder = Path(metadata_dir or METADATA_DIR)
@@ -129,10 +243,15 @@ def load_metadata(service: str, metadata_dir: Path | None = None) -> ServiceMeta
             md = ServiceMetadata(f)
             _METADATA_CACHE[service] = md
             return md
+    sample = folder / "payloads" / f"{service}_payload.json"
+    if sample.exists():
+        md = PayloadMetadata(service, sample)
+        _METADATA_CACHE[service] = md
+        return md
     return None
 
 
-def all_metadata(metadata_dir: Path | None = None) -> dict[str, ServiceMetadata]:
+def all_metadata(metadata_dir: Path | None = None) -> dict:
     folder = Path(metadata_dir or METADATA_DIR)
     out = {}
     for f in sorted(folder.glob("*.json")):
@@ -141,6 +260,13 @@ def all_metadata(metadata_dir: Path | None = None) -> dict[str, ServiceMetadata]
             out[md.service] = md
         except Exception:
             continue
+    for f in sorted((folder / "payloads").glob("*_payload.json")):
+        service = f.name[:-len("_payload.json")]
+        if service not in out:
+            try:
+                out[service] = PayloadMetadata(service, f)
+            except Exception:
+                continue
     return out
 
 

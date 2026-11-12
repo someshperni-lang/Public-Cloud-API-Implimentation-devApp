@@ -39,8 +39,9 @@ ENVIRONMENT = "DEV"
 TABS = [
     {"label": "Material PO texts", "icon": "📝",
      "scripts": {"ptext": "bulk_product_purchase_text_upload"}},
-    {"label": "Purchase requisitions", "icon": "📋",
-     "scripts": {"pr": "bulk_purchase_requisition_upload"}},
+    {"label": "Purchase requisitions", "icon": "📋", "picker": "Purchase requisition type",
+     "scripts": {"pr": "bulk_purchase_requisition_upload",
+                 "subcon_pr": "bulk_subcontracting_pr_upload"}},
     {"label": "Purchase orders", "icon": "🛒", "picker": "Purchase order type",
      "scripts": {"po": "bulk_purchase_order_upload",
                  "subcon": "bulk_subcontracting_po_upload"}},
@@ -546,7 +547,8 @@ class App:
                                          "it here affects this session only.",
                                  on_change=lambda e: s.__setitem__("url", e.control.value or ""))
         multi_sheet = hasattr(module, "template_xlsx_bytes")
-        t1 = outline_button("Excel template (4 sheets)" if multi_sheet else "Excel template",
+        t1 = outline_button((f"Excel template ({len(module.SHEETS)} sheets)" if hasattr(module, "SHEETS")
+                 else "Excel template (workbook)") if multi_sheet else "Excel template",
                             lambda e, m=module: self.page.run_task(
                                 self.save_bytes, f"{m.SLUG}_template.xlsx",
                                 sc.module_template_xlsx(m)), expand=True)
@@ -655,7 +657,7 @@ class App:
         if s.get("unknown"):
             out.append(note("These columns are not in the template and are ignored: "
                             + ", ".join(s["unknown"]), "warning"))
-        flat_note = (" - workbook shown as one row per component"
+        flat_note = (f" - workbook shown as one row per {getattr(module, 'FLAT_ROW', 'component')}"
                      if hasattr(module, "read_upload") and s["file_name"].lower().endswith(
                          (".xlsx", ".xlsm")) else "")
         out.append(expander(
@@ -886,8 +888,14 @@ class App:
                                ("Create", yes("creatable"), "blue"),
                                ("Update", yes("updatable"), "blue"),
                                ("Delete", yes("deletable"), "blue")]))
-        out.append(caption(f"{sc.service_url(self.meta_service)}/{self.meta_set} · entity type "
-                           f"{et_name} · keys: {', '.join(et['keys'])}"))
+        out.append(caption(f"{getattr(md, 'url', None) or sc.service_url(self.meta_service)}/"
+                           f"{self.meta_set} · entity type {et_name} · keys: "
+                           f"{', '.join(et['keys']) or '-'}"))
+        if isinstance(md, sc.PayloadMetadata):
+            out.append(note("No EDMX metadata file for this service - built from the API Hub "
+                            "sample payload in metadata/payloads: field names, nesting, types "
+                            "and maximum lengths (where the sample shows them). Uploads are "
+                            "checked against it."))
         if et["navs"]:
             rows = []
             for n in et["navs"]:
@@ -920,6 +928,18 @@ class App:
                                               self.save_bytes,
                                               f"{self.meta_service}_{self.meta_set}_fields.csv",
                                               d.to_csv(index=False).encode("utf-8-sig")))]))
+        sample = sc.payload_sample(self.meta_service)
+        if sample:
+            out.append(expander(
+                "Full payload structure (API Hub sample payload) - every field the API "
+                "accepts, nested as it is sent",
+                [ft.Container(txt(json.dumps(sample, indent=2), 12, TEXT, selectable=True,
+                                  font_family="monospace"),
+                              bgcolor=BG2, border_radius=8, padding=14),
+                 ft.Row([outline_button("Download sample payload (JSON)",
+                                        lambda e, s=sample, n=self.meta_service:
+                                        self.page.run_task(self.save_bytes, f"{n}_payload.json",
+                                                           json.dumps(s, indent=2).encode()))])]))
         return ft.Column(out, spacing=16)
 
     def on_meta_service(self, e):

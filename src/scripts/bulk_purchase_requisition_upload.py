@@ -38,7 +38,8 @@ from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from sap_common import DEV_HOST, parse_date, rows_of, run_cli, sap_bool  # noqa: E402
+from sap_common import (DEV_HOST, load_metadata, parse_date, rows_of, run_cli,  # noqa: E402
+                        sap_bool, validate_payload)
 
 TITLE = "Standard purchase requisitions"
 SLUG = "purchase_requisition"
@@ -448,6 +449,8 @@ def build_prs(df, allowed: list[str], default: str) -> list[dict]:
             pr["errors"].append("fill PurchaseRequisitionItem on every row of this PR, or on none")
         if len(set(numbers)) != len(numbers):
             pr["errors"].append("PurchaseRequisitionItem numbers repeat within this PR")
+        # field check against the API Hub sample payload (metadata/payloads)
+        pr["errors"] += validate_payload(load_metadata(SERVICE), "PurchaseReqn", pr["payload"])
         docs.append({"ref": pr["ref"], "lines": ",".join(map(str, pr["lines"])),
                      "errors": pr["errors"], "payload": pr["payload"]})
     return docs

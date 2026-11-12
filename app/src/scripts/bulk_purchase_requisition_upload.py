@@ -38,7 +38,8 @@ from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from sap_common import DEV_HOST, parse_date, rows_of, run_cli, sap_bool  # noqa: E402
+from sap_common import (DEV_HOST, load_metadata, parse_date, rows_of, run_cli,  # noqa: E402
+                        sap_bool, validate_payload)
 
 TITLE = "Standard purchase requisitions"
 SLUG = "purchase_requisition"
@@ -202,8 +203,10 @@ COLUMN_NOTES = {
     "PurReqnItemCurrency": "Currency of the price, e.g. INR; for IMPORT e.g. USD.",
     "AccountAssignmentCategory": "K cost center, F order, P project (WBS), A asset, C/E sales "
                                  "order. Required for CONSUMABLE, SERVICE and LIMIT.",
-    "PurchasingDocumentItemCategory": "Optional override. Letters converted like ME51N: "
-                                      "B limit, K consignment, U stock transfer, D service; "
+    "PurchasingDocumentItemCategory": "Item category - always sent. Blank = taken from "
+                                      "PRCategory (0 standard, 1 limit, 2 consignment, 7 stock "
+                                      "transfer). Or fill it: letters converted like ME51N - "
+                                      "B limit, K consignment, U stock transfer, D service - "
                                       "or internal keys 0/1/2/5/7/9. L / 3 (subcontracting) "
                                       "goes in the subcontracting upload.",
     "ProductTypeCode": "Optional override: 1 = material, 2 = service.",
@@ -249,6 +252,7 @@ _BASE = {"Plant": "01TG", "PurchasingGroup": "002", "DeliveryDate": "2026-11-15"
 SAMPLE_ROWS = [
     {"PR_Ref": "PR1", "PRCategory": "STANDARD", "PurchaseRequisitionType": "ZDOM",
      "PurReqnDescription": "Stock material", "PurchaseRequisitionItemText": "Test Material TG10-1",
+     "PurchasingDocumentItemCategory": "0",
      "Material": "RM019", "RequestedQuantity": "10", "BaseUnit": "KG", "BaseUnitISOCode": "KGM",
      **_BASE},
     {"PR_Ref": "PR1", "PRCategory": "STANDARD", "PurchaseRequisitionItemText": "Test Material TG10-2",
@@ -371,7 +375,7 @@ def build_prs(df, allowed: list[str], default: str) -> list[dict]:
                             "subcontracting items always use item category L / 3")
             else:
                 item["PurchasingDocumentItemCategory"] = internal
-        elif rule["item_cat"] != "0":                 # "0" (standard) is SAP's default
+        else:                                         # always sent ("0" = standard)
             item["PurchasingDocumentItemCategory"] = rule["item_cat"]
         if not row.get("ProductTypeCode") and rule["product_type"] != "1":   # 1 = default
             item["ProductTypeCode"] = rule["product_type"]
@@ -448,6 +452,8 @@ def build_prs(df, allowed: list[str], default: str) -> list[dict]:
             pr["errors"].append("fill PurchaseRequisitionItem on every row of this PR, or on none")
         if len(set(numbers)) != len(numbers):
             pr["errors"].append("PurchaseRequisitionItem numbers repeat within this PR")
+        # field check against the API Hub sample payload (metadata/payloads)
+        pr["errors"] += validate_payload(load_metadata(SERVICE), "PurchaseReqn", pr["payload"])
         docs.append({"ref": pr["ref"], "lines": ",".join(map(str, pr["lines"])),
                      "errors": pr["errors"], "payload": pr["payload"]})
     return docs
