@@ -7,16 +7,19 @@ One row = one PR item. Rows with the same PR_Ref form one purchase requisition
 (header fields come from the first row of each PR_Ref). Item numbers are
 optional: leave PurchaseRequisitionItem blank and SAP numbers the items.
 
-All PR kinds from one sheet - set PRCategory on each row:
+All non-subcontracting PR kinds from one sheet - set PRCategory on each row:
 
   STANDARD        stock material                      (blank = STANDARD)
   IMPORT          same as STANDARD; use your import PR type, foreign supplier/currency
   CONSUMABLE      account-assigned (K/F/P/A...) - material or text item
   SERVICE         service (product type 2), account-assigned, performance period
-  SUBCONTRACTING  item category L (3) - components come from the material's BOM
   STOCK_TRANSFER  item category U (7) - needs SupplyingPlant
   CONSIGNMENT     item category K (2)
   LIMIT           item category B (1) - limit amounts + period, account-assigned
+
+Subcontracting PRs (item category L / 3) have their own script, like the POs:
+bulk_subcontracting_pr_upload.py - subcontracting rows are rejected here.
+It reuses build_prs() and post_document() from this file.
 
 A PR can mix categories. PurchasingDocumentItemCategory and ProductTypeCode
 can also be filled directly; they override what PRCategory sets.
@@ -37,7 +40,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from sap_common import DEV_HOST, parse_date, rows_of, run_cli, sap_bool  # noqa: E402
 
-TITLE = "Purchase requisitions"
+TITLE = "Standard purchase requisitions"
 SLUG = "purchase_requisition"
 SERVICE = "API_PURCHASEREQUISITION_2"
 ENTITY_SET = "PurchaseReqn"
@@ -50,9 +53,9 @@ ICON = "📋"
 COLOR = "#4F46E5"
 GROUP_LABEL = "PR_Ref"
 ITEMS_LABEL = "Items"
-DESCRIPTION = ("Standard, import, consumable, service, subcontracting, stock transfer, "
-               "consignment and limit PRs (OData V4). One row per item, grouped by PR_Ref; "
-               "PRCategory on each row sets the item type.")
+DESCRIPTION = ("Standard, import, consumable, service, stock transfer, consignment and limit "
+               "PRs (OData V4). One row per item, grouped by PR_Ref; PRCategory on each row "
+               "sets the item type. Subcontracting PRs have their own upload.")
 
 ITEM_NAV = "_PurchaseRequisitionItem"
 ACCT_NAV = "_PurchaseReqnAcctAssgmt"
@@ -83,6 +86,10 @@ CATEGORIES = {
     "LIMIT": {"item_cat": "1", "product_type": "1", "acct": True, "period": True,
               "need": ["OverallLimitAmount"], "no_qty": True},
 }
+SUBCONTRACTING = "SUBCONTRACTING"
+SUBCONTRACTING_ITEM_CATEGORY = "3"
+STANDARD_CATEGORIES = ["STANDARD", "IMPORT", "CONSUMABLE", "SERVICE", "STOCK_TRANSFER",
+                       "CONSIGNMENT", "LIMIT"]
 CATEGORY_ALIASES = {"": "STANDARD", "STOCK": "STANDARD", "NORMAL": "STANDARD",
                     "STO": "STOCK_TRANSFER", "STOCK TRANSFER": "STOCK_TRANSFER",
                     "TRANSFER": "STOCK_TRANSFER", "SUBCON": "SUBCONTRACTING",
@@ -161,14 +168,15 @@ ACCT_OBJECT = {"K": ["CostCenter"], "F": ["OrderID"], "P": ["WBSElement"],
 
 HEADER_DEFAULTS = {"SourceDetermination": False, "PurReqnDoOnlyValidation": False}
 
-COLUMNS = (["PR_Ref", "PRCategory"] + list(HEADER_FIELDS) + list(ITEM_FIELDS)
+COLUMNS = (["PR_Ref", "PRCategory"] + list(HEADER_FIELDS)
+           + [f for f in ITEM_FIELDS if f != "Subcontractor"]
            + list(ACCT_FIELDS) + ["ItemText", "ItemTextLanguage"])
 
 COLUMN_NOTES = {
     "PR_Ref": "Required. Your own key - rows with the same value form one purchase requisition.",
-    "PRCategory": "STANDARD (blank), IMPORT, CONSUMABLE, SERVICE, SUBCONTRACTING, "
-                  "STOCK_TRANSFER, CONSIGNMENT or LIMIT. Sets item category / product type "
-                  "and the checks below.",
+    "PRCategory": "STANDARD (blank), IMPORT, CONSUMABLE, SERVICE, STOCK_TRANSFER, "
+                  "CONSIGNMENT or LIMIT. Sets item category / product type and the checks "
+                  "below. Subcontracting PRs: use the subcontracting upload.",
     "PurchaseRequisitionType": "Required (first row of the PR), e.g. ZDOM; your import type "
                                "for IMPORT PRs.",
     "PurReqnDescription": "Optional header description (max 40).",
@@ -177,7 +185,7 @@ COLUMN_NOTES = {
     "PurchaseRequisitionItem": "Optional item number, e.g. 10. Blank = SAP numbers the items.",
     "PurchaseRequisitionItemText": "Short text (max 40). Required when Material is blank.",
     "Material": "Material / service product. Blank = text item (then MaterialGroup is needed). "
-                "Required for SUBCONTRACTING, STOCK_TRANSFER and CONSIGNMENT.",
+                "Required for STOCK_TRANSFER and CONSIGNMENT.",
     "MaterialGroup": "Required for text items without Material.",
     "RequestedQuantity": "Required (not for LIMIT). Quantity, e.g. 10.",
     "BaseUnit": "Required (or BaseUnitISOCode), e.g. KG, PC, EA; for services e.g. AU or H.",
@@ -195,8 +203,9 @@ COLUMN_NOTES = {
     "AccountAssignmentCategory": "K cost center, F order, P project (WBS), A asset, C/E sales "
                                  "order. Required for CONSUMABLE, SERVICE and LIMIT.",
     "PurchasingDocumentItemCategory": "Optional override. Letters converted like ME51N: "
-                                      "B limit, K consignment, L subcontracting, U stock "
-                                      "transfer, D service; or internal keys 0/1/2/3/5/7/9.",
+                                      "B limit, K consignment, U stock transfer, D service; "
+                                      "or internal keys 0/1/2/5/7/9. L / 3 (subcontracting) "
+                                      "goes in the subcontracting upload.",
     "ProductTypeCode": "Optional override: 1 = material, 2 = service.",
     "FixedSupplier": "Optional fixed supplier (IMPORT: the foreign supplier).",
     "Supplier": "Optional desired supplier.",
@@ -257,13 +266,10 @@ SAMPLE_ROWS = [
      "AccountAssignmentCategory": "K", "CostCenter": "01TG1001", "GLAccount": "61002000",
      "PerformancePeriodStartDate": "2026-11-01", "PerformancePeriodEndDate": "2027-10-31",
      "Plant": "01TG", "PurchasingGroup": "002"},
-    {"PR_Ref": "PR4", "PRCategory": "SUBCONTRACTING", "PurchaseRequisitionType": "ZDOM",
-     "PurReqnDescription": "Subcontracting", "Material": "FG228", "RequestedQuantity": "100",
-     "BaseUnit": "PC", "Subcontractor": "18300010", **_BASE},
-    {"PR_Ref": "PR5", "PRCategory": "STOCK_TRANSFER", "PurchaseRequisitionType": "ZDOM",
+    {"PR_Ref": "PR4", "PRCategory": "STOCK_TRANSFER", "PurchaseRequisitionType": "ZDOM",
      "PurReqnDescription": "Stock transfer", "Material": "RM019", "RequestedQuantity": "50",
      "BaseUnit": "KG", "SupplyingPlant": "01DR", **_BASE},
-    {"PR_Ref": "PR6", "PRCategory": "IMPORT", "PurchaseRequisitionType": "ZIMP",
+    {"PR_Ref": "PR5", "PRCategory": "IMPORT", "PurchaseRequisitionType": "ZIMP",
      "PurReqnDescription": "Import material", "Material": "RM019", "RequestedQuantity": "500",
      "BaseUnit": "KG", "FixedSupplier": "18300020", "PurReqnItemCurrency": "USD", **_BASE},
 ]
@@ -312,20 +318,28 @@ def _build(row: dict, fields: dict, errors: list[str]) -> dict:
     return out
 
 
-def _category(row: dict, errs: list[str]) -> str:
+def _category(row: dict, errs: list[str], allowed: list[str], default: str) -> str:
     raw = row.get("PRCategory", "").strip().upper().replace("-", "_")
+    if not raw:
+        return default
     cat = CATEGORY_ALIASES.get(raw, CATEGORY_ALIASES.get(raw.replace("_", " "), raw))
-    if cat not in CATEGORIES:
-        errs.append(f"PRCategory '{row.get('PRCategory')}' is not one of "
-                    f"{', '.join(CATEGORIES)}")
-        return "STANDARD"
-    return cat
+    if cat == SUBCONTRACTING and SUBCONTRACTING not in allowed:
+        errs.append("subcontracting items go in the Subcontracting purchase requisitions "
+                    "upload")
+    elif cat not in allowed:
+        errs.append(f"PRCategory '{row.get('PRCategory')}' is not one of {', '.join(allowed)}")
+    return cat if cat in CATEGORIES else default
 
 
 # ---------------------------------------------------------------------------
 # Build documents
 # ---------------------------------------------------------------------------
 def build_documents(df) -> list[dict]:
+    return build_prs(df, STANDARD_CATEGORIES, "STANDARD")
+
+
+def build_prs(df, allowed: list[str], default: str) -> list[dict]:
+    """Shared builder for the standard and the subcontracting PR uploads."""
     prs: dict[str, dict] = {}
 
     for row in rows_of(df):
@@ -339,7 +353,7 @@ def build_documents(df) -> list[dict]:
             prs[ref] = {"ref": ref, "lines": [], "errors": [], "payload": header}
         pr = prs[ref]
 
-        cat = _category(row, errs)
+        cat = _category(row, errs, allowed, default)
         rule = CATEGORIES[cat]
         item = _build(row, ITEM_FIELDS, errs)
 
@@ -349,7 +363,12 @@ def build_documents(df) -> list[dict]:
             internal = ITEM_CATEGORY_MAP.get(given)
             if internal is None:
                 errs.append(f"PurchasingDocumentItemCategory '{given}' is not supported "
-                            f"(use B, K, L, U, D or 0/1/2/3/5/7/9)")
+                            f"(use B, K, U, D or 0/1/2/5/7/9)")
+            elif (internal == SUBCONTRACTING_ITEM_CATEGORY) != (cat == SUBCONTRACTING):
+                errs.append("item category L / 3 (subcontracting) belongs in the "
+                            "Subcontracting purchase requisitions upload"
+                            if cat != SUBCONTRACTING else
+                            "subcontracting items always use item category L / 3")
             else:
                 item["PurchasingDocumentItemCategory"] = internal
         elif rule["item_cat"] != "0":                 # "0" (standard) is SAP's default
@@ -381,7 +400,7 @@ def build_documents(df) -> list[dict]:
                 errs.append(f"{f} is required for {cat} items")
         if rule.get("material") and not row.get("Material"):
             errs.append(f"Material is required for {cat} items")
-        if not row.get("Material"):
+        if not row.get("Material") and not rule.get("material"):     # text item
             if not row.get("PurchaseRequisitionItemText"):
                 errs.append("fill Material, or PurchaseRequisitionItemText for a text item")
             if not row.get("MaterialGroup"):

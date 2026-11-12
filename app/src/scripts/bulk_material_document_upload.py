@@ -3,8 +3,10 @@
 Bulk Goods Movement upload (MIGO) - API_MATERIAL_DOCUMENT_SRV, SAP DEV system.
 
 One row = one material document item. Rows are grouped into one document when
-they share DocGroup (or PO / production order / reservation / delivery),
-GoodsMovementCode, GoodsMovementType, DocumentDate and PostingDate.
+they share the reference (PurchaseOrder, else ManufacturingOrder, Reservation,
+Delivery, else ReferenceDocument), GoodsMovementCode, GoodsMovementType,
+DocumentDate and PostingDate. A row with none of these references is its own
+document.
 
 GoodsMovementCode and GoodsMovementRefDocType are derived from the movement
 type (MOVEMENT_TYPE_RULES) unless you fill them in the row yourself.
@@ -34,7 +36,7 @@ YEAR_FIELD = "MaterialDocumentYear"
 TCODE = "MIGO"
 ICON = "📦"
 COLOR = "#0D9488"
-GROUP_LABEL = "DocGroup / PO"
+GROUP_LABEL = "PO / reference"
 ITEMS_LABEL = "Items"
 
 
@@ -93,62 +95,99 @@ HEADER_FIELDS = {"DocumentDate": "DocumentDate", "PostingDate": "PostingDate",
                  "MaterialDocumentHeaderText": "HeaderText",
                  "ReferenceDocument": "ReferenceDocument", "GoodsMovementCode": "GoodsMovementCode"}
 
-ITEM_FIELDS = ["Material", "Plant", "StorageLocation", "Batch", "GoodsMovementType",
-               "InventoryStockType", "InventorySpecialStockType", "QuantityInEntryUnit",
-               "EntryUnit", "PurchaseOrder", "PurchaseOrderItem", "GoodsMovementRefDocType",
-               "ManufacturingOrder", "ManufacturingOrderItem", "Reservation", "ReservationItem",
-               "Delivery", "DeliveryItem", "CostCenter", "GLAccount", "WBSElement", "SalesOrder",
-               "SalesOrderItem", "MasterFixedAsset", "FixedAsset", "Supplier", "Customer",
-               "IssuingOrReceivingPlant", "IssuingOrReceivingStorageLoc", "IssgOrRcvgMaterial",
-               "IssgOrRcvgBatch", "GoodsMovementReasonCode", "MaterialDocumentItemText",
-               "GoodsRecipientName", "UnloadingPointName", "ManufactureDate",
-               "ShelfLifeExpirationDate", "IsCompletelyDelivered"]
+# Columns - same names and order as the upload template
+COLUMNS = [
+    "PurchaseOrder", "DocumentDate", "PostingDate", "GoodsMovementCode", "HeaderText",
+    "ReferenceDocument", "Material", "Plant", "StorageLocation", "PurchaseOrderItem",
+    "EntryUnit", "Batch", "BatchBySupplier", "InventoryStockType", "InventoryValuationType",
+    "InventorySpecialStockType", "Supplier", "Customer", "SalesOrder", "SalesOrderItem",
+    "WBSElement", "ManufacturingOrder", "ManufacturingOrderItem", "GoodsMovementReasonCode",
+    "Delivery", "DeliveryItem", "AccountAssignmentCategory", "CostCenter", "ControllingArea",
+    "CostObject", "GLAccount", "FunctionalArea", "ProfitCenter", "MasterFixedAsset",
+    "FixedAsset", "MaterialDocumentItemText", "GoodsRecipientName", "UnloadingPointName",
+    "Reservation", "ReservationItem", "Quantity", "GoodsMovementType",
+    "GoodsMovementRefDocType", "ManufactureDate", "ShelfLifeExpirationDate", "SerialNumber",
+    "IssuingOrReceivingPlant", "IssuingOrReceivingStorageLoc", "SpecialStockIdfgWBSElement"]
 
-COLUMNS = (["DocGroup", "GoodsMovementType", "GoodsMovementCode", "DocumentDate", "PostingDate",
-            "HeaderText", "ReferenceDocument"]
-           + [f for f in ITEM_FIELDS if f != "GoodsMovementType"] + ["SerialNumbers"])
+HEADER_COLUMNS = {"DocumentDate", "PostingDate", "GoodsMovementCode", "HeaderText",
+                  "ReferenceDocument"}
+# item API field -> column (Quantity is QuantityInEntryUnit in the API)
+ITEM_FIELDS = {("QuantityInEntryUnit" if c == "Quantity" else c): c
+               for c in COLUMNS if c not in HEADER_COLUMNS and c != "SerialNumber"}
 
-COLUMN_NOTES = {
-    "DocGroup": "Optional. Rows with the same value go into one material document.",
-    "GoodsMovementType": "Required. 101, 201, 261, 311, 541, 501 ... (see MOVEMENT_TYPE_RULES).",
-    "GoodsMovementCode": "Optional. Leave blank - derived from movement type (01/02/03/04/05).",
+_NOTES = {
+    "PurchaseOrder": "101/102/122/161: purchase order number. Rows with the same PO (and "
+                     "movement type and dates) go into one material document.",
     "DocumentDate": "Required. YYYY-MM-DD or DD.MM.YYYY.",
     "PostingDate": "Required. YYYY-MM-DD or DD.MM.YYYY.",
+    "GoodsMovementCode": "Optional. Leave blank - derived from movement type (01/02/03/04/05).",
     "HeaderText": "Optional header text (max 25).",
-    "ReferenceDocument": "Optional. Delivery note / bill of lading (max 16).",
+    "ReferenceDocument": "Optional. Delivery note / bill of lading (max 16). Rows without a "
+                         "PO / order / reservation / delivery that share it form one document.",
     "Material": "Required except for 101 against a PO (taken from the PO item).",
     "Plant": "Required.",
     "StorageLocation": "Usually required.",
-    "QuantityInEntryUnit": "Required. Quantity.",
-    "EntryUnit": "Required. Unit of entry, e.g. PC, KG.",
-    "PurchaseOrder": "101/102/122/161: purchase order number.",
-    "PurchaseOrderItem": "101/102/122/161: PO item, e.g. 10 (padded to 00010).",
-    "GoodsMovementRefDocType": "Optional. Derived: B for PO receipts, F for production order receipts.",
-    "ManufacturingOrder": "261/262 and 101 against a production order.",
-    "CostCenter": "201/202.",
-    "WBSElement": "221/222.",
-    "SalesOrder": "231/232.",
-    "MasterFixedAsset": "241/242.",
+    "Batch": "Batch, for batch-managed materials.",
+    "BatchBySupplier": "Optional supplier batch.",
+    "InventoryStockType": "Optional stock type: blank / 01 = unrestricted, 02 = quality "
+                          "inspection, 07 = blocked.",
+    "InventorySpecialStockType": "Optional special stock, e.g. E (sales order), Q (project), "
+                                 "O (subcontractor).",
     "Supplier": "541/542, 511/512.",
+    "SalesOrder": "231/232.",
+    "SalesOrderItem": "231/232: sales order item.",
+    "PurchaseOrderItem": "101/102/122/161: PO item, e.g. 10 (padded to 00010).",
+    "WBSElement": "221/222.",
+    "ManufacturingOrder": "261/262 and 101 against a production order.",
+    "GoodsMovementReasonCode": "Required by some movement types (e.g. 122 return).",
+    "CostCenter": "201/202.",
+    "GLAccount": "Optional G/L account (e.g. for 201 / 501 without default).",
+    "MasterFixedAsset": "241/242.",
+    "EntryUnit": "Required. Unit of entry, e.g. PC, KG.",
+    "GdsMvtExtAmtInCoCodeCrcy": "Optional external amount in company code currency "
+                                "(e.g. 501 / 561 with a value).",
+    "IssgOrRcvgMaterial": "309/310: receiving material.",
     "IssuingOrReceivingPlant": "301/302: receiving plant.",
     "IssuingOrReceivingStorageLoc": "311/312: receiving storage location.",
-    "IssgOrRcvgMaterial": "309/310: receiving material.",
-    "GoodsMovementReasonCode": "Required by some movement types (e.g. 122 return).",
-    "SerialNumbers": "Optional. Several serial numbers separated by ;",
+    "Reservation": "Optional reservation the movement is posted against.",
+    "Quantity": "Required. Quantity in EntryUnit.",
+    "GoodsMovementType": "Required. 101, 201, 261, 311, 541, 501 ... (see MOVEMENT_TYPE_RULES).",
+    "GoodsMovementRefDocType": "Optional. Derived: B for PO receipts, F for production order "
+                               "receipts.",
+    "ManufactureDate": "Optional date of manufacture (batch / shelf life).",
+    "ShelfLifeExpirationDate": "Optional shelf life expiration date.",
+    "SerialNumber": "Optional. Several serial numbers separated by ;",
 }
 
+
+def _auto_note(col: str) -> str:
+    md = load_metadata(SERVICE)
+    for et in (HEADER_TYPE, ITEM_TYPE):
+        p = md.field(et, col) if md else None
+        if p:
+            kind = {"Edm.DateTime": " Date: YYYY-MM-DD.", "Edm.Boolean": " TRUE / FALSE.",
+                    "Edm.Decimal": " Number."}.get(p.get("Type", ""), "")
+            return f"Optional. {p.get('quickinfo') or p.get('label') or col}.{kind}"
+    return "Optional."
+
+
+COLUMN_NOTES = {c: _NOTES.get(c) or _auto_note(c) for c in COLUMNS}
+
 SAMPLE_ROWS = [
-    {"GoodsMovementType": "101", "DocumentDate": "2026-10-08", "PostingDate": "2026-10-08",
-     "HeaderText": "GR for PO", "ReferenceDocument": "DN-1001", "Plant": "1810",
-     "StorageLocation": "181A", "QuantityInEntryUnit": "10", "EntryUnit": "KG",
-     "PurchaseOrder": "4500000001", "PurchaseOrderItem": "10"},
-    {"GoodsMovementType": "201", "DocumentDate": "2026-10-08", "PostingDate": "2026-10-08",
+    {"PurchaseOrder": "4500000001", "PurchaseOrderItem": "10", "GoodsMovementType": "101",
+     "DocumentDate": "2026-12-08", "PostingDate": "2026-12-08", "HeaderText": "GR for PO",
+     "ReferenceDocument": "DN-1001", "Plant": "1810", "StorageLocation": "181A",
+     "Quantity": "10", "EntryUnit": "KG"},
+    {"GoodsMovementType": "201", "DocumentDate": "2026-12-08", "PostingDate": "2026-12-08",
      "HeaderText": "GI to cost center", "Material": "RM019", "Plant": "1810",
-     "StorageLocation": "181A", "QuantityInEntryUnit": "2", "EntryUnit": "KG",
-     "CostCenter": "18101101"},
-    {"DocGroup": "SLOC-1", "GoodsMovementType": "311", "DocumentDate": "2026-10-08",
-     "PostingDate": "2026-10-08", "HeaderText": "SLoc to SLoc", "Material": "RM019",
-     "Plant": "1810", "StorageLocation": "181A", "QuantityInEntryUnit": "3", "EntryUnit": "KG",
+     "StorageLocation": "181A", "Quantity": "2", "EntryUnit": "KG", "CostCenter": "18101101"},
+    {"GoodsMovementType": "311", "DocumentDate": "2026-12-08", "PostingDate": "2026-12-08",
+     "HeaderText": "SLoc to SLoc", "ReferenceDocument": "TR-77", "Material": "RM019",
+     "Plant": "1810", "StorageLocation": "181A", "Quantity": "3", "EntryUnit": "KG",
+     "IssuingOrReceivingStorageLoc": "181B"},
+    {"GoodsMovementType": "311", "DocumentDate": "2026-12-08", "PostingDate": "2026-12-08",
+     "ReferenceDocument": "TR-77", "Material": "RM020", "Plant": "1810",
+     "StorageLocation": "181A", "Quantity": "5", "EntryUnit": "KG",
      "IssuingOrReceivingStorageLoc": "181B"},
 ]
 
@@ -176,19 +215,23 @@ def build_documents(df) -> list[dict]:
             errs.append("GoodsMovementType is empty")
         elif not code:
             errs.append(f"Movement type {mvt} is not in MOVEMENT_TYPE_RULES - fill GoodsMovementCode")
-        for f in required + ["Plant", "QuantityInEntryUnit", "EntryUnit", "DocumentDate", "PostingDate"]:
-            if not row.get(f):
+        for f in required + ["Plant", "Quantity", "EntryUnit", "DocumentDate", "PostingDate"]:
+            if f not in COLUMNS:
+                errs.append(f"movement type {mvt} needs {f}, which this template does not "
+                            f"have - post it in SAP (MIGO)")
+            elif not row.get(f):
                 errs.append(f"{f} is required for movement type {mvt}")
 
         item = ib.build(row, ITEM_FIELDS, errs,
                         defaults={"GoodsMovementRefDocType": ref} if ref else None)
-        serials = [s.strip() for s in row.get("SerialNumbers", "").replace(",", ";").split(";")
+        serials = [s.strip() for s in row.get("SerialNumber", "").replace(",", ";").split(";")
                    if s.strip()]
         if serials:
             item["to_SerialNumbers"] = {"results": [{"SerialNumber": s} for s in serials]}
 
-        grp_ref = (row.get("DocGroup") or row.get("PurchaseOrder") or row.get("ManufacturingOrder")
-                   or row.get("Reservation") or row.get("Delivery") or f"LINE{row['_line']}")
+        grp_ref = (row.get("PurchaseOrder") or row.get("ManufacturingOrder")
+                   or row.get("Reservation") or row.get("Delivery")
+                   or row.get("ReferenceDocument") or f"LINE{row['_line']}")
         key = "|".join([grp_ref, code, mvt, row.get("DocumentDate", ""), row.get("PostingDate", "")])
         if key not in groups:
             hrow = dict(row, GoodsMovementCode=code)
